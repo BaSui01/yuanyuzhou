@@ -1,0 +1,544 @@
+// 导入TailwindCSS
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// 导入我们的主样式文件
+@use'../../../styles/main.scss';
+
+// 导入变量文件
+@use'./variables.scss';
+
+// 全局字体设置
+@useurl('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+// 基础样式重置
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// 自定义组件样式
+@layer components {
+
+  // 卡片组件
+  .card {
+    @apply rounded-xl shadow-2xl border border-white/10;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+
+    &:hover {
+      @apply shadow-cyan-500/25;
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-2px);
+    }
+  }
+
+  // 按钮样式
+  .btn {
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-300;
+    @apply flex items-center justify-center gap-2;
+
+    &.btn-primary {
+      @apply bg-gradient-to-r from-cyan-500 to-blue-600;
+      @apply text-white shadow-lg shadow-cyan-500/25;
+      @apply hover:shadow-xl hover:shadow-cyan-500/40;
+      @apply hover:scale-105 active:scale-95;
+    }
+
+    &.btn-secondary {
+      @apply bg-gradient-to-r from-purple-500 to-pink-600;
+      @apply text-white shadow-lg shadow-purple-500/25;
+      @apply hover:shadow-xl hover:shadow-purple-500/40;
+      @apply hover:scale-105 active:scale-95;
+    }
+
+    &.btn-ghost {
+      @apply bg-white/10 text-white border border-white/20;
+      @apply hover:bg-white/20 hover:border-white/30;
+    }
+
+    &.btn-outline {
+      @apply border-2 border-cyan-500 text-cyan-500;
+      @apply hover:bg-cyan-500 hover:text-white;
+    }
+
+    &:disabled {
+      @apply opacity-50 cursor-not-allowed;
+      @apply hover:scale-100 hover:shadow-lg;
+    }
+  }
+
+  // 输入框样式
+  .input {
+    @apply w-full px-4 py-3 rounded-lg;
+    @apply bg-white/10 border border-white/20;
+    @apply text-white placeholder-gray-400;
+    @apply focus:outline-none focus:ring-2 focus:ring-cyan-500;
+    @apply transition-all duration-300;
+
+    &:focus {
+      @apply bg-white/15 border-cyan-500/50;
+    }
+  }
+
+  // 导航链接
+  .nav-link {
+    @apply px-4 py-2 rounded-lg transition-all duration-300;
+    @apply text-gray-300 hover:text-white;
+    @apply hover:bg-white/10;
+
+    &.active {
+      @apply text-cyan-400 bg-cyan-500/20;
+    }
+  }
+
+  // 头像样式
+  .avatar {
+    @apply rounded-full border-2 border-white/20;
+    @apply transition-all duration-300;
+
+    &:hover {
+      @apply border-cyan-500/50 shadow-lg shadow-cyan-500/25;
+    }
+  }
+
+  // 加载器
+  .loader {
+    @apply animate-spin rounded-full border-2 border-gray-300;
+    border-top-color: #06b6d4;
+  }
+
+  // 模态框
+  .modal {
+    @apply fixed inset-0 z-50 flex items-center justify-center;
+    @apply bg-black/50 backdrop-blur-sm;
+
+    .modal-content {
+      @apply bg-gray-900/95 rounded-xl shadow-2xl;
+      @apply border border-white/10 max-w-lg w-full mx-4;
+      @apply backdrop-filter backdrop-blur-xl;
+    }
+  }
+
+  // 通知样式
+  .notification {
+    @apply fixed top-4 right-4 z-50;
+    @apply px-6 py-4 rounded-lg shadow-xl;
+    @apply border border-white/20;
+    @apply backdrop-filter backdrop-blur-xl;
+
+    &.success {
+      @apply bg-green-500/20 border-green-500/30 text-green-400;
+    }
+
+    &.error {
+      @apply bg-red-500/20 border-red-500/30 text-red-400;
+    }
+
+    &.warning {
+      @apply bg-yellow-500/20 border-yellow-500/30 text-yellow-400;
+    }
+
+    &.info {
+      @apply bg-blue-500/20 border-blue-500/30 text-blue-400;
+    }
+  }
+
+  // 聊天气泡
+  .chat-bubble {
+    @apply max-w-xs lg:max-w-md px-4 py-2 rounded-xl;
+    @apply shadow-lg backdrop-filter backdrop-blur-lg;
+
+    &.user {
+      @apply bg-gradient-to-r from-cyan-500 to-blue-600;
+      @apply text-white ml-auto;
+      border-radius: 20px 20px 4px 20px;
+    }
+
+    &.ai {
+      @apply bg-white/10 border border-white/20;
+      @apply text-white mr-auto;
+      border-radius: 20px 20px 20px 4px;
+    }
+  }
+
+  // 3D元素
+  .element-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+
+    &:hover {
+      transform: rotateY(5deg) rotateX(5deg);
+    }
+  }
+
+  // 发光效果
+  .glow-effect {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899);
+      border-radius: inherit;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &:hover::before {
+      opacity: 0.7;
+      animation: glow-pulse 2s ease-in-out infinite alternate;
+    }
+  }
+
+  // 粒子背景容器
+  .particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  // 浮动动画
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  // 脉冲动画
+  .pulse-animation {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+}
+
+// 自定义工具类
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-cyan {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-purple {
+    background: linear-gradient(135deg, #8b5cf6, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .backdrop-blur-xs {
+    backdrop-filter: blur(2px);
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+  }
+
+  .shadow-glow-purple {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+
+  .shadow-glow-pink {
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+  }
+}
+
+// 动画定义
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 5px rgba(6, 182, 212, 0.5);
+  }
+
+  100% {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.8), 0 0 30px rgba(6, 182, 212, 0.6);
+  }
+}
+
+@keyframes glow-pulse {
+  0% {
+    filter: blur(5px);
+  }
+
+  100% {
+    filter: blur(10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .card {
+    @apply mx-4;
+  }
+
+  .btn {
+    @apply px-4 py-2 text-sm;
+  }
+
+  .modal-content {
+    @apply mx-4;
+  }
+}
+
+// 深色主题变量
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #1a1a2e;
+  --bg-tertiary: #16213e;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --accent-cyan: #06b6d4;
+  --accent-purple: #8b5cf6;
+  --accent-pink: #ec4899;
+}
+
+// PrimeVue组件自定义样式
+.p-button {
+  @apply transition-all duration-300;
+}
+
+.p-inputtext {
+  @apply bg-white/10 border-white/20 text-white;
+
+  &:focus {
+    @apply border-cyan-500/50 shadow-lg shadow-cyan-500/25;
+  }
+}
+
+.p-card {
+  @apply bg-white/5 border border-white/10;
+  backdrop-filter: blur(20px);
+}
+
+.p-dialog {
+  .p-dialog-content {
+    @apply bg-gray-900/95 backdrop-filter backdrop-blur-xl;
+  }
+}
+
+// 全局样式
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+// 加载动画
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0f172a;
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: #06b6d4;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// 页面过渡动画
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-left-enter-active,
+.slide-left-leave-active,
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: transform 0.3s ease;
+}
+
+.slide-left-enter-from,
+.slide-right-leave-to {
+  transform: translateX(-30px);
+  opacity: 0;
+}
+
+.slide-left-leave-to,
+.slide-right-enter-from {
+  transform: translateX(30px);
+  opacity: 0;
+}
+
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.slide-up-enter-from,
+.slide-up-leave-to {
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+// 滚动条样式
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(6, 182, 212, 0.5);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.7);
+}
+
+// 表单元素样式
+input,
+textarea,
+select {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #f8fafc;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+
+  &:focus {
+    outline: none;
+    border-color: rgba(6, 182, 212, 0.5);
+    box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2);
+  }
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+// 禁用状态
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+// 自定义PrimeVue样式覆盖
+.p-component {
+  font-family: 'Inter', sans-serif;
+}
+
+.p-button {
+  border-radius: 8px;
+
+  &.p-button-sm {
+    font-size: 0.875rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+.p-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.p-dialog {
+  backdrop-filter: blur(10px);
+
+  .p-dialog-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .p-dialog-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}

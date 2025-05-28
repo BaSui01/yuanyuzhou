@@ -1,0 +1,366 @@
+// 颜色变量
+$colors: (
+  // 主色调
+  primary: #06b6d4,
+  primary-dark: #0891b2,
+  primary-light: #67e8f9,
+
+  // 次要色调
+  secondary: #8b5cf6,
+  secondary-dark: #7c3aed,
+  secondary-light: #a78bfa,
+
+  // 强调色
+  accent: #ec4899,
+  accent-dark: #db2777,
+  accent-light: #f472b6,
+
+  // 背景色
+  bg-primary: #0a0a0f,
+  bg-secondary: #1a1a2e,
+  bg-tertiary: #16213e,
+  bg-card: rgba(255, 255, 255, 0.05),
+  bg-modal: rgba(0, 0, 0, 0.8),
+
+  // 文本色
+  text-primary: #ffffff,
+  text-secondary: #a0a0a0,
+  text-muted: #6b7280,
+  text-accent: #06b6d4,
+
+  // 边框色
+  border-primary: rgba(255, 255, 255, 0.1),
+  border-secondary: rgba(255, 255, 255, 0.2),
+  border-accent: rgba(6, 182, 212, 0.3),
+
+  // 状态色
+  success: #10b981,
+  warning: #f59e0b,
+  error: #ef4444,
+  info: #3b82f6,
+
+  // 成功状态
+  success-bg: rgba(16, 185, 129, 0.1),
+  success-border: rgba(16, 185, 129, 0.3),
+
+  // 警告状态
+  warning-bg: rgba(245, 158, 11, 0.1),
+  warning-border: rgba(245, 158, 11, 0.3),
+
+  // 错误状态
+  error-bg: rgba(239, 68, 68, 0.1),
+  error-border: rgba(239, 68, 68, 0.3),
+
+  // 信息状态
+  info-bg: rgba(59, 130, 246, 0.1),
+  info-border: rgba(59, 130, 246, 0.3)
+);
+
+// 获取颜色函数
+@function color($name) {
+  @return map-get($colors, $name);
+}
+
+// 间距变量
+$spacing: (
+  xs: 0.25rem,    // 4px
+  sm: 0.5rem,     // 8px
+  md: 1rem,       // 16px
+  lg: 1.5rem,     // 24px
+  xl: 2rem,       // 32px
+  2xl: 2.5rem,    // 40px
+  3xl: 3rem,      // 48px
+  4xl: 4rem,      // 64px
+  5xl: 5rem,      // 80px
+  6xl: 6rem       // 96px
+);
+
+// 获取间距函数
+@function spacing($size) {
+  @return map-get($spacing, $size);
+}
+
+// 字体大小
+$font-sizes: (
+  xs: 0.75rem,    // 12px
+  sm: 0.875rem,   // 14px
+  base: 1rem,     // 16px
+  lg: 1.125rem,   // 18px
+  xl: 1.25rem,    // 20px
+  2xl: 1.5rem,    // 24px
+  3xl: 1.875rem,  // 30px
+  4xl: 2.25rem,   // 36px
+  5xl: 3rem,      // 48px
+  6xl: 3.75rem,   // 60px
+  7xl: 4.5rem,    // 72px
+  8xl: 6rem,      // 96px
+  9xl: 8rem       // 128px
+);
+
+// 获取字体大小函数
+@function font-size($size) {
+  @return map-get($font-sizes, $size);
+}
+
+// 字体权重
+$font-weights: (
+  thin: 100,
+  extralight: 200,
+  light: 300,
+  normal: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+  extrabold: 800,
+  black: 900
+);
+
+// 获取字体权重函数
+@function font-weight($weight) {
+  @return map-get($font-weights, $weight);
+}
+
+// 圆角半径
+$border-radius: (
+  none: 0,
+  sm: 0.125rem,   // 2px
+  base: 0.25rem,  // 4px
+  md: 0.375rem,   // 6px
+  lg: 0.5rem,     // 8px
+  xl: 0.75rem,    // 12px
+  2xl: 1rem,      // 16px
+  3xl: 1.5rem,    // 24px
+  full: 9999px
+);
+
+// 获取圆角半径函数
+@function border-radius($size) {
+  @return map-get($border-radius, $size);
+}
+
+// 阴影
+$shadows: (
+  sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+  base: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+  md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+  lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+  xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+  2xl: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+  inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+  glow: '0 0 20px rgba(6, 182, 212, 0.3)',
+  glow-purple: '0 0 20px rgba(139, 92, 246, 0.3)',
+  glow-pink: '0 0 20px rgba(236, 72, 153, 0.3)'
+);
+
+// 获取阴影函数
+@function shadow($type) {
+  @return unquote(map-get($shadows, $type));
+}
+
+// 过渡动画
+$transitions: (
+  all: 'all 0.3s ease',
+  colors: 'color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease',
+  opacity: 'opacity 0.3s ease',
+  transform: 'transform 0.3s ease',
+  fast: 'all 0.15s ease',
+  slow: 'all 0.5s ease'
+);
+
+// 获取过渡函数
+@function transition($type) {
+  @return unquote(map-get($transitions, $type));
+}
+
+// Z-index层级
+$z-index: (
+  dropdown: 1000,
+  sticky: 1020,
+  fixed: 1030,
+  modal-backdrop: 1040,
+  modal: 1050,
+  popover: 1060,
+  tooltip: 1070,
+  toast: 1080,
+  loading: 9999
+);
+
+// 获取Z-index函数
+@function z-index($level) {
+  @return map-get($z-index, $level);
+}
+
+// 断点
+$breakpoints: (
+  xs: 475px,
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  2xl: 1536px
+);
+
+// 获取断点函数
+@function breakpoint($size) {
+  @return map-get($breakpoints, $size);
+}
+
+// 媒体查询混合器
+@mixin responsive($breakpoint) {
+  @media (min-width: breakpoint($breakpoint)) {
+    @content;
+  }
+}
+
+// 容器最大宽度
+$container-max-widths: (
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  2xl: 1536px
+);
+
+// 获取容器最大宽度函数
+@function container-max-width($size) {
+  @return map-get($container-max-widths, $size);
+}
+
+// 动画时长
+$animation-duration: (
+  fast: 0.15s,
+  normal: 0.3s,
+  slow: 0.5s,
+  slower: 0.75s,
+  slowest: 1s
+);
+
+// 获取动画时长函数
+@function animation-duration($speed) {
+  @return map-get($animation-duration, $speed);
+}
+
+// 缓动函数
+$easing: (
+  linear: cubic-bezier(0, 0, 1, 1),
+  ease: cubic-bezier(0.25, 0.1, 0.25, 1),
+  ease-in: cubic-bezier(0.42, 0, 1, 1),
+  ease-out: cubic-bezier(0, 0, 0.58, 1),
+  ease-in-out: cubic-bezier(0.42, 0, 0.58, 1),
+  bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55),
+  back: cubic-bezier(0.175, 0.885, 0.32, 1.275)
+);
+
+// 获取缓动函数
+@function easing($type) {
+  @return map-get($easing, $type);
+}
+
+// 混合器：居中
+@mixin center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// 混合器：绝对居中
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// 混合器：文本省略
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 混合器：多行文本省略
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// 混合器：清除浮动
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// 混合器：背景渐变
+@mixin gradient-bg($start, $end, $direction: 45deg) {
+  background: linear-gradient($direction, $start, $end);
+}
+
+// 混合器：毛玻璃效果
+@mixin glass-effect($opacity: 0.05, $blur: 20px) {
+  background: rgba(255, 255, 255, $opacity);
+  backdrop-filter: blur($blur);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+// 混合器：发光效果
+@mixin glow-effect($color: color(primary), $size: 20px, $opacity: 0.3) {
+  box-shadow: 0 0 $size rgba($color, $opacity);
+}
+
+// 混合器：悬浮效果
+@mixin hover-lift($distance: 2px) {
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-$distance);
+  }
+}
+
+// 混合器：按钮样式
+@mixin button-style($bg-color, $text-color: white) {
+  background: $bg-color;
+  color: $text-color;
+  border: none;
+  padding: spacing(md) spacing(lg);
+  border-radius: border-radius(lg);
+  font-weight: font-weight(medium);
+  cursor: pointer;
+  transition: transition(all);
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: shadow(lg);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// 混合器：卡片样式
+@mixin card-style {
+  @include glass-effect;
+  padding: spacing(xl);
+  border-radius: border-radius(xl);
+  box-shadow: shadow(xl);
+  transition: transition(all);
+
+  &:hover {
+    @include hover-lift;
+    @include glow-effect;
+  }
+}
