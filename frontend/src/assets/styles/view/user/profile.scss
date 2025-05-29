@@ -1,0 +1,500 @@
+@import '../../variables';
+
+.profile-view {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+// 个人资料头部
+.profile-header {
+    background: linear-gradient(135deg, $primary-color-dark, $secondary-color);
+    border-radius: $border-radius-lg;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: $shadow-lg;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('/img/profile-bg-pattern.png');
+        background-size: cover;
+        opacity: 0.1;
+        z-index: 1;
+    }
+
+    .header-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .user-avatar {
+        position: relative;
+
+        .avatar-edit-button {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: $primary-color;
+            color: #fff;
+            border: 2px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: darken($primary-color, 10%);
+            }
+
+            i {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .user-info {
+        flex: 1;
+        min-width: 200px;
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .user-bio {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .user-stats {
+            display: flex;
+            gap: 2rem;
+
+            .stat-item {
+                text-align: center;
+
+                .stat-value {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    display: block;
+                }
+
+                .stat-label {
+                    font-size: 0.9rem;
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+
+    .profile-actions {
+        display: flex;
+        gap: 1rem;
+    }
+}
+
+// 个人资料内容
+.profile-content {
+    background-color: #fff;
+    border-radius: $border-radius;
+    box-shadow: $shadow-sm;
+    overflow: hidden;
+
+    // 标签页样式覆盖
+    :deep(.p-tabview-nav) {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #e9ecef;
+        padding: 0 1rem;
+
+        li {
+            margin-right: 0.5rem;
+
+            .p-tabview-nav-link {
+                padding: 1rem 1.5rem;
+                color: $text-color-light;
+                font-weight: 500;
+                border: none;
+                border-bottom: 2px solid transparent;
+                border-radius: 0;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.03);
+                    border-color: rgba(0, 0, 0, 0.1);
+                    color: $text-color-dark;
+                }
+
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+
+            &.p-highlight {
+                .p-tabview-nav-link {
+                    background-color: transparent;
+                    color: $primary-color;
+                    border-color: $primary-color;
+                }
+            }
+        }
+    }
+
+    :deep(.p-tabview-panels) {
+        padding: 2rem;
+    }
+}
+
+// 信息部分
+.info-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+
+    .info-card {
+        background-color: #f8f9fa;
+        border-radius: $border-radius;
+        padding: 1.5rem;
+
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: $text-color-dark;
+            font-weight: 600;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 0.75rem;
+        }
+
+        .info-item {
+            display: flex;
+            margin-bottom: 1rem;
+            align-items: center;
+
+            .info-label {
+                font-weight: 500;
+                color: $text-color-light;
+                width: 100px;
+                flex-shrink: 0;
+            }
+
+            .info-value {
+                color: $text-color-dark;
+            }
+
+            .social-links {
+                display: flex;
+                gap: 0.5rem;
+            }
+        }
+    }
+}
+
+// AI伙伴部分
+.pets-section {
+    .pets-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .pet-card {
+        background-color: #f8f9fa;
+        border-radius: $border-radius;
+        overflow: hidden;
+        box-shadow: $shadow-sm;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: $shadow-md;
+        }
+
+        .pet-avatar {
+            height: 150px;
+            overflow: hidden;
+            position: relative;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .pet-info {
+            padding: 1.5rem;
+
+            h3 {
+                font-size: 1.25rem;
+                margin-bottom: 0.5rem;
+                color: $text-color-dark;
+            }
+
+            p {
+                color: $text-color-light;
+                margin-bottom: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .pet-stats {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.85rem;
+                color: $text-color-muted;
+
+                .pet-stat {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+            }
+        }
+
+        .pet-actions {
+            padding: 0 1.5rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
+// 虚拟空间部分
+.spaces-section {
+    .spaces-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .space-card {
+        background-color: #f8f9fa;
+        border-radius: $border-radius;
+        overflow: hidden;
+        box-shadow: $shadow-sm;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: $shadow-md;
+        }
+
+        .space-preview {
+            height: 150px;
+            overflow: hidden;
+            position: relative;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .space-info {
+            padding: 1.5rem;
+
+            h3 {
+                font-size: 1.25rem;
+                margin-bottom: 0.5rem;
+                color: $text-color-dark;
+            }
+
+            p {
+                color: $text-color-light;
+                margin-bottom: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .space-stats {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.85rem;
+                color: $text-color-muted;
+
+                .space-stat {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+            }
+        }
+
+        .space-actions {
+            padding: 0 1.5rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
+// 好友列表部分
+.friends-section {
+    .friends-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .friend-card {
+        background-color: #f8f9fa;
+        border-radius: $border-radius;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        box-shadow: $shadow-sm;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(-3px);
+        }
+
+        .friend-avatar {
+            position: relative;
+
+            .status-badge {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                border: 2px solid #fff;
+
+                &.online {
+                    background-color: $success-color;
+                }
+
+                &.offline {
+                    background-color: $text-color-muted;
+                }
+            }
+        }
+
+        .friend-info {
+            flex: 1;
+
+            h3 {
+                font-size: 1rem;
+                margin-bottom: 0.25rem;
+                color: $text-color-dark;
+            }
+
+            p {
+                font-size: 0.85rem;
+                color: $text-color-muted;
+            }
+        }
+
+        .friend-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+    }
+}
+
+// 空状态
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+
+    .empty-icon {
+        font-size: 3rem;
+        color: $text-color-muted;
+        margin-bottom: 1rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+        color: $text-color-dark;
+        margin-bottom: 0.5rem;
+    }
+
+    p {
+        color: $text-color-light;
+        margin-bottom: 1.5rem;
+    }
+}
+
+// 头像上传对话框
+.avatar-upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem 0;
+
+    .current-avatar {
+        position: relative;
+    }
+
+    .upload-controls {
+        width: 100%;
+    }
+}
+
+// 响应式调整
+@media (max-width: 768px) {
+    .profile-header {
+        .header-content {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .user-info {
+            .user-stats {
+                justify-content: center;
+            }
+        }
+    }
+
+    .info-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-header {
+        padding: 1.5rem 1rem;
+
+        .user-info {
+            .user-stats {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+    }
+
+    .profile-content {
+        :deep(.p-tabview-nav) {
+            li {
+                .p-tabview-nav-link {
+                    padding: 0.75rem 1rem;
+                }
+            }
+        }
+
+        :deep(.p-tabview-panels) {
+            padding: 1.5rem 1rem;
+        }
+    }
+}

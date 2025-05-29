@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { aiAPI } from '@/api/ai'
+import { api } from '@/modules/http'
 
 export const useAIStore = defineStore('ai', () => {
   // 状态
@@ -88,7 +88,7 @@ export const useAIStore = defineStore('ai', () => {
     loading.value = true
 
     try {
-      const response = await aiAPI.chat({
+      const response = await api.ai.chat({
         message,
         model: selectedModel.value,
         history: chatHistory.value.slice(-10), // 发送最近10条消息作为上下文
@@ -166,7 +166,7 @@ export const useAIStore = defineStore('ai', () => {
         })
       } else {
         // 使用后端TTS服务
-        const response = await aiAPI.textToSpeech({
+        const response = await api.ai.textToSpeech({
           text,
           voice: voiceSettings.value.voice,
           speed: voiceSettings.value.speed,
@@ -282,7 +282,7 @@ export const useAIStore = defineStore('ai', () => {
   const textToSpeech = async (options) => {
     try {
       loading.value = true;
-      const response = await aiAPI.textToSpeech({
+      const response = await api.ai.textToSpeech({
         text: options.text,
         voice: options.voice || voiceSettings.value.voice,
         speed: options.speed || voiceSettings.value.speed,
@@ -315,7 +315,7 @@ export const useAIStore = defineStore('ai', () => {
       const formData = new FormData();
       formData.append('audio', options.audio);
 
-      const response = await aiAPI.speechToText(formData);
+      const response = await api.ai.speechToText(formData);
 
       return {
         success: true,

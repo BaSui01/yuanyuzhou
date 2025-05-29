@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景圆形 -->
+  <circle cx="64" cy="64" r="60" fill="#06b6d4" />
+
+  <!-- 机器人头部 -->
+  <rect x="39" y="32" width="50" height="45" rx="10" fill="#ffffff" />
+
+  <!-- 机器人眼睛 -->
+  <circle cx="54" cy="53" r="6" fill="#06b6d4" />
+  <circle cx="74" cy="53" r="6" fill="#06b6d4" />
+
+  <!-- 机器人天线 -->
+  <line x1="64" y1="32" x2="64" y2="20" stroke="#ffffff" stroke-width="3" />
+  <circle cx="64" cy="17" r="4" fill="#ffffff" />
+
+  <!-- 机器人微笑 -->
+  <path d="M 52 68 Q 64 78 76 68" stroke="#06b6d4" stroke-width="3" fill="none" />
+
+  <!-- 机器人身体 -->
+  <path d="M 49 77 v 20 h 30 v -20" fill="#ffffff" />
+
+  <!-- 装饰元素 -->
+  <rect x="54" y="83" width="20" height="8" rx="2" fill="#06b6d4" />
+</svg>

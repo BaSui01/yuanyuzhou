@@ -1,23 +1,619 @@
+// Dashboard 视图样式
+@import '../variables.scss';
+
 .dashboard-view {
-  .glass {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  .three-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
   }
 
-  .glass-dark {
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+  .dashboard-container {
+    position: relative;
+    z-index: 1;
+    padding: spacing(lg);
+    max-width: 1400px;
+    margin: 0 auto;
+
+    @include responsive(sm) {
+      padding: spacing(md);
+    }
+  }
+}
+
+// 欢迎区域
+.welcome-section {
+  @include glass-effect(0.08);
+  @include card-style;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: spacing(2xl);
+  padding: spacing(2xl);
+
+  @include responsive(md) {
+    flex-direction: column;
+    gap: spacing(lg);
   }
 
-  .glass-hover:hover {
-    background: rgba(255, 255, 255, 0.08);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: spacing(lg);
+
+    .user-avatar {
+      @include glow-effect(color(primary), 10px, 0.4);
+      border: 3px solid rgba(color(primary), 0.3);
+      transition: transition(all);
+
+      &:hover {
+        @include glow-effect(color(primary), 15px, 0.6);
+        transform: scale(1.05);
+      }
+    }
+
+    .user-details {
+      .welcome-title {
+        font-size: font-size(3xl);
+        font-weight: font-weight(bold);
+        @include gradient-bg(color(primary), color(secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: spacing(sm);
+      }
+
+      .welcome-subtitle {
+        color: color(text-secondary);
+        font-size: font-size(lg);
+        margin-bottom: spacing(md);
+      }
+
+      .user-level {
+        display: flex;
+        align-items: center;
+        gap: spacing(sm);
+
+        i {
+          color: color(accent);
+        }
+
+        .level-progress {
+          width: 150px;
+          height: 6px;
+          margin-left: spacing(sm);
+        }
+      }
+    }
   }
 
-  .notification.unread {
-    border-left: 3px solid #06b6d4;
+  .notification-center {
+    position: relative;
+
+    .notification-btn {
+      position: relative;
+
+      &:hover {
+        @include hover-lift(3px);
+      }
+    }
+
+    .notification-list {
+      width: 350px;
+      max-height: 400px;
+      overflow-y: auto;
+
+      .notification-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: spacing(md);
+        border-bottom: 1px solid color(border-primary);
+
+        h3 {
+          margin: 0;
+          font-size: font-size(lg);
+          font-weight: font-weight(semibold);
+        }
+
+        .notification-actions {
+          display: flex;
+          gap: spacing(sm);
+        }
+      }
+
+      .notification-items {
+        .notification-item {
+          display: flex;
+          align-items: flex-start;
+          gap: spacing(md);
+          padding: spacing(md);
+          border-bottom: 1px solid color(border-primary);
+          transition: transition(all);
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.05);
+          }
+
+          &.unread {
+            background: rgba(color(primary), 0.1);
+            border-left: 3px solid color(primary);
+          }
+
+          .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: border-radius(full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+          }
+
+          .notification-content {
+            flex: 1;
+
+            h4 {
+              margin: 0 0 spacing(xs) 0;
+              font-size: font-size(sm);
+              font-weight: font-weight(semibold);
+            }
+
+            p {
+              margin: 0 0 spacing(xs) 0;
+              font-size: font-size(sm);
+              color: color(text-secondary);
+              line-height: 1.4;
+            }
+
+            .notification-time {
+              font-size: font-size(xs);
+              color: color(text-muted);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// AI宠物状态卡片
+.ai-pet-section {
+  margin-bottom: spacing(2xl);
+
+  .pet-status-card {
+    @include glass-effect(0.08);
+
+    .pet-header {
+      display: flex;
+      align-items: center;
+      gap: spacing(md);
+      padding: spacing(lg);
+
+      .pet-avatar {
+        @include glow-effect(color(secondary), 8px, 0.3);
+        border: 2px solid rgba(color(secondary), 0.3);
+      }
+
+      .pet-info {
+        flex: 1;
+
+        h3 {
+          margin: 0 0 spacing(xs) 0;
+          font-size: font-size(xl);
+          font-weight: font-weight(semibold);
+        }
+
+        .pet-status {
+          color: color(text-secondary);
+          font-size: font-size(sm);
+        }
+      }
+
+      .refresh-btn {
+        &:hover {
+          @include hover-lift(2px);
+        }
+      }
+    }
+
+    .pet-stats {
+      display: grid;
+      gap: spacing(lg);
+      padding: spacing(lg);
+
+      .stat-item {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: spacing(md);
+
+        label {
+          font-size: font-size(sm);
+          font-weight: font-weight(medium);
+          color: color(text-secondary);
+        }
+
+        span {
+          font-size: font-size(sm);
+          font-weight: font-weight(semibold);
+          color: color(text-primary);
+        }
+
+        .energy-bar {
+          grid-column: 1 / -1;
+          margin-top: spacing(xs);
+
+          ::v-deep(.p-progressbar-value) {
+            background: linear-gradient(90deg, color(success), color(warning));
+          }
+        }
+
+        .mood-bar {
+          grid-column: 1 / -1;
+          margin-top: spacing(xs);
+
+          ::v-deep(.p-progressbar-value) {
+            background: linear-gradient(90deg, color(secondary), color(primary));
+          }
+        }
+
+        .intimacy-bar {
+          grid-column: 1 / -1;
+          margin-top: spacing(xs);
+
+          ::v-deep(.p-progressbar-value) {
+            background: linear-gradient(90deg, color(accent), color(secondary));
+          }
+        }
+      }
+    }
+  }
+}
+
+// 快捷访问区域
+.quick-access-section {
+  margin-bottom: spacing(2xl);
+
+  .section-title {
+    font-size: font-size(2xl);
+    font-weight: font-weight(bold);
+    color: color(text-primary);
+    margin-bottom: spacing(xl);
+    text-align: center;
+  }
+
+  .quick-access-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: spacing(xl);
+
+    .quick-access-card {
+      @include glass-effect(0.06);
+      @include hover-lift(5px);
+      cursor: pointer;
+      transition: transition(all);
+      overflow: hidden;
+      position: relative;
+
+      &:hover {
+        @include glow-effect(color(primary), 20px, 0.2);
+
+        .card-icon {
+          transform: scale(1.1);
+        }
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, color(primary), transparent);
+        transition: left 0.5s ease;
+      }
+
+      &:hover::before {
+        left: 100%;
+      }
+
+      .card-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: border-radius(xl);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: spacing(lg);
+        transition: transition(transform);
+
+        i {
+          font-size: font-size(2xl);
+        }
+      }
+
+      h3 {
+        font-size: font-size(xl);
+        font-weight: font-weight(semibold);
+        margin-bottom: spacing(md);
+        color: color(text-primary);
+      }
+
+      p {
+        color: color(text-secondary);
+        margin-bottom: spacing(lg);
+        line-height: 1.6;
+      }
+
+      .card-status {
+        font-size: font-size(sm);
+        color: color(text-muted);
+        padding: spacing(sm) spacing(md);
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: border-radius(md);
+        border-top: 1px solid color(border-primary);
+        margin: spacing(lg) -spacing(xl) -spacing(xl);
+      }
+    }
+  }
+}
+
+// 统计信息区域
+.stats-section {
+  margin-bottom: spacing(2xl);
+
+  .section-title {
+    font-size: font-size(2xl);
+    font-weight: font-weight(bold);
+    color: color(text-primary);
+    margin-bottom: spacing(xl);
+    text-align: center;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: spacing(xl);
+
+    .stat-card {
+      @include glass-effect(0.06);
+      @include card-style;
+      display: flex;
+      align-items: center;
+      gap: spacing(lg);
+      padding: spacing(xl);
+
+      .stat-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: border-radius(xl);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(color(primary), 0.2);
+        color: color(primary);
+
+        i {
+          font-size: font-size(2xl);
+        }
+      }
+
+      .stat-content {
+        h3 {
+          font-size: font-size(2xl);
+          font-weight: font-weight(bold);
+          color: color(text-primary);
+          margin-bottom: spacing(xs);
+        }
+
+        p {
+          color: color(text-secondary);
+          font-size: font-size(sm);
+        }
+      }
+
+      &:hover {
+        .stat-icon {
+          @include glow-effect(color(primary), 15px, 0.4);
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+// 最近活动区域
+.recent-activity-section {
+  .section-title {
+    font-size: font-size(2xl);
+    font-weight: font-weight(bold);
+    color: color(text-primary);
+    margin-bottom: spacing(xl);
+    text-align: center;
+  }
+
+  .activity-card {
+    @include glass-effect(0.06);
+
+    .activity-timeline {
+      ::v-deep(.p-timeline-event-marker) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: border-radius(full);
+        border: none;
+
+        .activity-marker {
+          width: 100%;
+          height: 100%;
+          border-radius: border-radius(full);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          i {
+            font-size: font-size(lg);
+          }
+        }
+      }
+
+      ::v-deep(.p-timeline-event-content) {
+        padding-left: spacing(lg);
+
+        .activity-content {
+          h4 {
+            font-size: font-size(lg);
+            font-weight: font-weight(semibold);
+            color: color(text-primary);
+            margin-bottom: spacing(sm);
+          }
+
+          p {
+            color: color(text-secondary);
+            margin-bottom: spacing(sm);
+            line-height: 1.5;
+          }
+
+          small {
+            color: color(text-muted);
+            font-size: font-size(xs);
+          }
+        }
+      }
+
+      ::v-deep(.p-timeline-event-connector) {
+        background: linear-gradient(180deg, color(primary), color(secondary));
+        width: 2px;
+      }
+    }
+  }
+}
+
+// 响应式设计
+@include responsive(md) {
+  .dashboard-container {
+    padding: spacing(md);
+  }
+
+  .welcome-section {
+    padding: spacing(lg);
+
+    .user-info {
+      flex-direction: column;
+      text-align: center;
+      gap: spacing(md);
+    }
+  }
+
+  .quick-access-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@include responsive(sm) {
+  .dashboard-container {
+    padding: spacing(sm);
+  }
+
+  .welcome-section {
+    padding: spacing(md);
+  }
+
+  .section-title {
+    font-size: font-size(xl) !important;
+  }
+}
+
+// 动画增强
+.element-3d {
+  &:hover {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+.pulse-animation {
+  animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+// 自定义 PrimeVue 组件样式
+::v-deep(.p-card) {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  .p-card-body {
+    padding: 0;
+  }
+}
+
+::v-deep(.p-button) {
+  @include button-style(color(primary));
+
+  &.p-button-outlined {
+    background: transparent;
+    border: 2px solid color(primary);
+    color: color(primary);
+
+    &:hover {
+      background: color(primary);
+      color: white;
+    }
+  }
+
+  &.p-button-secondary {
+    @include button-style(color(secondary));
+  }
+}
+
+::v-deep(.p-avatar) {
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+::v-deep(.p-progressbar) {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: border-radius(full);
+  overflow: hidden;
+
+  .p-progressbar-value {
+    background: linear-gradient(90deg, color(primary), color(secondary));
+    transition: transition(all);
+  }
+}
+
+::v-deep(.p-overlaypanel) {
+  @include glass-effect(0.95);
+  border: 1px solid color(border-primary);
+  box-shadow: shadow(2xl);
+}
+
+::v-deep(.p-timeline) {
+  .p-timeline-event {
+    margin-bottom: spacing(lg);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }

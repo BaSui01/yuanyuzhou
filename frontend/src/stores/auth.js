@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { authAPI } from '@/api/auth'
+import { api } from '@/modules/http'
 
 export const useAuthStore = defineStore('auth', () => {
   // 状态
@@ -39,7 +39,7 @@ export const useAuthStore = defineStore('auth', () => {
   const login = async (credentials) => {
     loading.value = true
     try {
-      const response = await authAPI.login(credentials)
+      const response = await api.auth.login(credentials)
       const { user: userData, token: authToken } = response.data
 
       setAuth(userData, authToken)
@@ -60,7 +60,7 @@ export const useAuthStore = defineStore('auth', () => {
   const register = async (userData) => {
     loading.value = true
     try {
-      const response = await authAPI.register(userData)
+      const response = await api.auth.register(userData)
       const { user: newUser, token: authToken } = response.data
 
       setAuth(newUser, authToken)
@@ -82,7 +82,7 @@ export const useAuthStore = defineStore('auth', () => {
     loading.value = true
     try {
       if (token.value) {
-        await authAPI.logout()
+        await api.auth.logout()
       }
     } catch (error) {
       console.error('退出登录请求失败:', error)
@@ -105,7 +105,7 @@ export const useAuthStore = defineStore('auth', () => {
         user.value = JSON.parse(savedUser)
 
         // 验证token是否仍然有效
-        const response = await authAPI.me()
+        const response = await api.auth.me()
         user.value = response.data.user
 
         // 更新本地存储的用户信息
@@ -123,7 +123,7 @@ export const useAuthStore = defineStore('auth', () => {
   const updateUser = async (userData) => {
     loading.value = true
     try {
-      const response = await authAPI.updateProfile(userData)
+      const response = await api.auth.updateProfile(userData)
       user.value = response.data.user
 
       // 更新本地存储
@@ -145,7 +145,7 @@ export const useAuthStore = defineStore('auth', () => {
   const changePassword = async (passwordData) => {
     loading.value = true
     try {
-      const response = await authAPI.changePassword(passwordData)
+      const response = await api.auth.changePassword(passwordData)
       return { success: true, data: response.data }
     } catch (error) {
       console.error('修改密码失败:', error)
@@ -162,7 +162,7 @@ export const useAuthStore = defineStore('auth', () => {
   const forgotPassword = async (email) => {
     loading.value = true
     try {
-      const response = await authAPI.forgotPassword({ email })
+      const response = await api.auth.forgotPassword({ email })
       return { success: true, data: response.data }
     } catch (error) {
       console.error('发送重置密码邮件失败:', error)
@@ -179,7 +179,7 @@ export const useAuthStore = defineStore('auth', () => {
   const resetPassword = async (resetData) => {
     loading.value = true
     try {
-      const response = await authAPI.resetPassword(resetData)
+      const response = await api.auth.resetPassword(resetData)
       return { success: true, data: response.data }
     } catch (error) {
       console.error('重置密码失败:', error)
@@ -208,7 +208,7 @@ export const useAuthStore = defineStore('auth', () => {
   const getSocialLoginUrl = async (provider) => {
     loading.value = true
     try {
-      const response = await authAPI.getSocialLoginUrl(provider)
+      const response = await api.auth.getSocialLoginUrl(provider)
       return { success: true, data: response.data }
     } catch (error) {
       console.error('获取社交登录URL失败:', error)

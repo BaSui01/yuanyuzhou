@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <!-- 背景 -->
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2e" />
+      <stop offset="100%" stop-color="#16213e" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#4d8aff" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#4d8aff" stop-opacity="0" />
+    </radialGradient>
+    <!-- 网格图案 -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#4DBA87" stroke-width="0.5" stroke-opacity="0.3" />
+    </pattern>
+  </defs>
+
+  <!-- 主背景 -->
+  <rect width="800" height="600" fill="url(#bg-gradient)" />
+
+  <!-- 网格地面 -->
+  <rect x="0" y="400" width="800" height="200" fill="url(#grid)" />
+
+  <!-- 地平线发光效果 -->
+  <ellipse cx="400" cy="400" rx="500" ry="60" fill="url(#glow)" opacity="0.5" />
+
+  <!-- 远处的山脉/建筑物 -->
+  <path d="M0,400 L100,360 L150,380 L200,350 L250,370 L300,340 L350,380 L400,330 L450,390 L500,340 L550,370 L600,350 L650,390 L700,360 L750,380 L800,400 L800,400 L0,400 Z" fill="#0f3460" opacity="0.8" />
+
+  <!-- 近处的建筑物 -->
+  <g opacity="0.9">
+    <!-- 左侧建筑 -->
+    <rect x="100" y="300" width="80" height="100" fill="#256d85" />
+    <rect x="120" y="320" width="40" height="60" fill="#4DBA87" opacity="0.8" />
+
+    <!-- 中央塔 -->
+    <rect x="350" y="200" width="100" height="200" fill="#4DBA87" />
+    <rect x="370" y="150" width="60" height="50" fill="#256d85" />
+    <rect x="390" y="100" width="20" height="50" fill="#4DBA87" />
+
+    <!-- 右侧建筑群 -->
+    <rect x="550" y="320" width="60" height="80" fill="#256d85" />
+    <rect x="620" y="340" width="70" height="60" fill="#4DBA87" opacity="0.7" />
+    <rect x="580" y="300" width="30" height="100" fill="#256d85" opacity="0.8" />
+  </g>
+
+  <!-- 悬浮平台 -->
+  <g>
+    <ellipse cx="200" cy="250" rx="50" ry="15" fill="#4DBA87" opacity="0.8" />
+    <ellipse cx="600" cy="200" rx="70" ry="20" fill="#4DBA87" opacity="0.8" />
+    <ellipse cx="350" cy="280" rx="30" ry="10" fill="#4DBA87" opacity="0.6" />
+  </g>
+
+  <!-- 连接线 -->
+  <g stroke="#4DBA87" stroke-width="1" opacity="0.6">
+    <line x1="200" y1="250" x2="350" y2="280" />
+    <line x1="350" y1="280" x2="400" y2="200" />
+    <line x1="400" y1="200" x2="600" y2="200" />
+  </g>
+
+  <!-- 悬浮粒子 -->
+  <g>
+    <circle cx="180" cy="230" r="3" fill="white" opacity="0.8" />
+    <circle cx="350" cy="260" r="2" fill="white" opacity="0.7" />
+    <circle cx="430" cy="180" r="4" fill="white" opacity="0.9" />
+    <circle cx="580" cy="190" r="3" fill="white" opacity="0.8" />
+    <circle cx="300" cy="300" r="2" fill="white" opacity="0.7" />
+    <circle cx="500" cy="250" r="3" fill="white" opacity="0.8" />
+  </g>
+
+  <!-- 虚拟人物/头像 -->
+  <g transform="translate(400, 300)">
+    <!-- 头像背景光环 -->
+    <circle cx="0" cy="0" r="30" fill="#4DBA87" opacity="0.3" />
+    <!-- 头像 -->
+    <circle cx="0" cy="0" r="20" fill="#4DBA87" />
+    <!-- 简化的人形 -->
+    <circle cx="0" cy="-5" r="8" fill="white" opacity="0.9" />
+    <path d="M-10,0 L10,0 L5,15 L-5,15 Z" fill="white" opacity="0.9" />
+  </g>
+
+  <!-- 小型飞行器 -->
+  <g transform="translate(250, 220)">
+    <ellipse cx="0" cy="0" rx="15" ry="5" fill="#4DBA87" opacity="0.8" />
+    <circle cx="0" cy="-3" r="5" fill="#256d85" />
+  </g>
+
+  <g transform="translate(550, 180)">
+    <ellipse cx="0" cy="0" rx="20" ry="7" fill="#4DBA87" opacity="0.8" />
+    <circle cx="0" cy="-5" r="7" fill="#256d85" />
+  </g>
+
+  <!-- 远处闪烁的星星 -->
+  <g>
+    <circle cx="100" cy="100" r="1" fill="white" opacity="0.8" />
+    <circle cx="150" cy="50" r="1.5" fill="white" opacity="0.7" />
+    <circle cx="250" cy="80" r="1" fill="white" opacity="0.9" />
+    <circle cx="350" cy="60" r="1.2" fill="white" opacity="0.8" />
+    <circle cx="450" cy="120" r="1" fill="white" opacity="0.7" />
+    <circle cx="550" cy="70" r="1.5" fill="white" opacity="0.9" />
+    <circle cx="650" cy="90" r="1" fill="white" opacity="0.8" />
+    <circle cx="750" cy="50" r="1.2" fill="white" opacity="0.7" />
+  </g>
+
+  <!-- 全息投影 -->
+  <g transform="translate(500, 320)">
+    <circle cx="0" cy="0" r="20" fill="#4d8aff" opacity="0.1" />
+    <circle cx="0" cy="0" r="15" fill="#4d8aff" opacity="0.2" />
+    <rect x="-10" y="-10" width="20" height="20" fill="#4d8aff" opacity="0.3" />
+  </g>
+
+  <!-- 元宇宙标志 -->
+  <g transform="translate(400, 50)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#4DBA87" text-anchor="middle">元宇宙空间</text>
+    <path d="M-80,10 L80,10" stroke="#4DBA87" stroke-width="2" opacity="0.6" />
+  </g>
+</svg>

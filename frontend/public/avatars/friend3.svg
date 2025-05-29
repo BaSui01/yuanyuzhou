@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <circle cx="50" cy="50" r="50" fill="#ec4899" />
+
+  <!-- 头部 -->
+  <circle cx="50" cy="50" r="35" fill="#db2777" />
+
+  <!-- 彩色飘带 -->
+  <path d="M15,30 Q30,10 50,15 Q70,20 85,30" stroke="#f472b6" stroke-width="4" fill="none" />
+  <path d="M15,35 Q35,20 50,25 Q65,30 85,35" stroke="#a855f7" stroke-width="4" fill="none" />
+  <path d="M15,40 Q40,30 50,35 Q60,40 85,40" stroke="#38bdf8" stroke-width="4" fill="none" />
+
+  <!-- 艺术家贝雷帽 -->
+  <ellipse cx="50" cy="30" rx="25" ry="10" fill="#be185d" />
+  <path d="M30,30 C30,35 40,40 50,40 C60,40 70,35 70,30" fill="#be185d" />
+
+  <!-- 面部特征 -->
+  <ellipse cx="40" cy="50" rx="5" ry="7" fill="white" />
+  <ellipse cx="60" cy="50" rx="5" ry="7" fill="white" />
+  <circle cx="40" cy="50" r="3" fill="#be185d" />
+  <circle cx="60" cy="50" r="3" fill="#be185d" />
+
+  <!-- 彩色嘴唇 -->
+  <path d="M40,65 Q50,70 60,65" stroke="#f472b6" stroke-width="3" fill="none" />
+
+  <!-- 颈部/身体连接 -->
+  <path d="M40,75 L40,85 L60,85 L60,75" fill="#be185d" />
+
+  <!-- 颈部艺术项链 -->
+  <path d="M40,80 L60,80" stroke="#f9a8d4" stroke-width="2" />
+  <circle cx="50" cy="83" r="3" fill="#f0abfc" />
+
+  <!-- 艺术笔刷 -->
+  <path d="M70,55 L85,45" stroke="#9d174d" stroke-width="2" />
+  <path d="M85,45 L90,43 L88,48 L85,45" fill="#9d174d" />
+
+  <!-- 头发装饰 -->
+  <path d="M25,45 Q20,30 30,25" stroke="#f9a8d4" stroke-width="2" fill="none" />
+  <path d="M75,45 Q80,30 70,25" stroke="#f9a8d4" stroke-width="2" fill="none" />
+  <circle cx="30" cy="25" r="2" fill="#f0abfc" />
+  <circle cx="70" cy="25" r="2" fill="#f0abfc" />
+</svg>

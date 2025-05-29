@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440" height="600" viewBox="0 0 1440 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 定义波浪图案 -->
+    <pattern id="wavePattern" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+      <path d="M 0 50 C 50 20, 150 80, 200 50 M 0 100 C 50 70, 150 130, 200 100 M 0 150 C 50 120, 150 180, 200 150" stroke="#f472b6" stroke-width="1" fill="none" opacity="0.2" />
+    </pattern>
+
+    <!-- 定义渐变 -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf2f8" />
+      <stop offset="100%" stop-color="#fbcfe8" />
+    </linearGradient>
+
+    <!-- 定义星形 -->
+    <pattern id="starPattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+      <path d="M 50 10 L 55 35 L 80 35 L 60 50 L 70 75 L 50 60 L 30 75 L 40 50 L 20 35 L 45 35 Z" fill="#db2777" opacity="0.1" />
+    </pattern>
+  </defs>
+
+  <!-- 背景层 -->
+  <rect width="1440" height="600" fill="url(#bgGradient)" />
+
+  <!-- 波浪层 -->
+  <rect width="1440" height="600" fill="url(#wavePattern)" />
+
+  <!-- 星形层 -->
+  <rect width="1440" height="600" fill="url(#starPattern)" />
+
+  <!-- 装饰元素 - 圆圈 -->
+  <circle cx="100" cy="100" r="40" fill="#f472b6" opacity="0.1" />
+  <circle cx="300" cy="200" r="25" fill="#f472b6" opacity="0.1" />
+  <circle cx="1200" cy="150" r="60" fill="#f472b6" opacity="0.1" />
+  <circle cx="1100" cy="400" r="35" fill="#f472b6" opacity="0.1" />
+
+  <!-- 装饰元素 - 线条 -->
+  <line x1="0" y1="0" x2="1440" y2="600" stroke="#f472b6" stroke-width="1" opacity="0.05" />
+  <line x1="1440" y1="0" x2="0" y2="600" stroke="#f472b6" stroke-width="1" opacity="0.05" />
+</svg>

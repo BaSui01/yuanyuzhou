@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <circle cx="50" cy="50" r="50" fill="#475569" />
+
+  <!-- 深空背景 -->
+  <circle cx="50" cy="50" r="40" fill="#1e293b" />
+
+  <!-- 宇航员头盔 -->
+  <circle cx="50" cy="50" r="30" fill="#94a3b8" />
+  <circle cx="50" cy="50" r="25" fill="#64748b" />
+
+  <!-- 面罩 -->
+  <ellipse cx="50" cy="50" rx="20" ry="18" fill="#334155" />
+
+  <!-- 面罩反光 -->
+  <ellipse cx="50" cy="45" rx="15" ry="10" fill="#475569" opacity="0.5" />
+
+  <!-- 星空反射 -->
+  <circle cx="45" cy="42" r="1" fill="white" />
+  <circle cx="55" cy="44" r="1" fill="white" />
+  <circle cx="48" cy="52" r="1" fill="white" />
+  <circle cx="58" cy="55" r="1" fill="white" />
+  <circle cx="42" cy="55" r="1" fill="white" />
+
+  <!-- 氧气管 -->
+  <path d="M30,60 Q20,70 25,80" stroke="#94a3b8" stroke-width="2" fill="none" />
+  <path d="M70,60 Q80,70 75,80" stroke="#94a3b8" stroke-width="2" fill="none" />
+
+  <!-- 头盔连接处 -->
+  <path d="M40,75 Q50,85 60,75" fill="#64748b" />
+
+  <!-- 通讯器 -->
+  <rect x="65" y="45" width="5" height="10" rx="2" fill="#cbd5e1" />
+  <circle cx="67.5" cy="50" r="1" fill="#ef4444" />
+
+  <!-- 头盔顶部灯 -->
+  <circle cx="50" cy="20" r="3" fill="#94a3b8" />
+  <circle cx="50" cy="20" r="2" fill="#38bdf8" />
+</svg>

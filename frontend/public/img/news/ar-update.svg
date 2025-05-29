@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200">
+  <!-- Background -->
+  <rect width="400" height="200" fill="#00695c"/>
+
+  <!-- Decorative elements -->
+  <circle cx="350" cy="50" r="80" fill="#00897b" opacity="0.6"/>
+  <circle cx="50" cy="150" r="100" fill="#00897b" opacity="0.4"/>
+
+  <!-- AR Glasses -->
+  <g transform="translate(200, 90) scale(1.2)">
+    <!-- Glasses frame -->
+    <path d="M-70,0 L-30,0 L-25,-10 L25,-10 L30,0 L70,0"
+          stroke="#b2dfdb" stroke-width="4" fill="none"/>
+
+    <!-- Left lens -->
+    <rect x="-60" y="-5" width="40" height="30" rx="5" ry="5"
+          fill="#4db6ac" fill-opacity="0.5" stroke="#b2dfdb" stroke-width="2"/>
+
+    <!-- Right lens -->
+    <rect x="20" y="-5" width="40" height="30" rx="5" ry="5"
+          fill="#4db6ac" fill-opacity="0.5" stroke="#b2dfdb" stroke-width="2"/>
+
+    <!-- Temple arms -->
+    <path d="M-70,0 L-80,10" stroke="#b2dfdb" stroke-width="3"/>
+    <path d="M70,0 L80,10" stroke="#b2dfdb" stroke-width="3"/>
+
+    <!-- AR elements -->
+    <g transform="translate(-40, 10)">
+      <circle cx="0" cy="0" r="5" fill="#e0f2f1"/>
+      <path d="M-10,-10 L10,10 M-10,10 L10,-10" stroke="#e0f2f1" stroke-width="2"/>
+    </g>
+
+    <g transform="translate(40, 10)">
+      <rect x="-7" y="-7" width="14" height="14" fill="#e0f2f1"/>
+      <circle cx="0" cy="0" r="3" fill="#00695c"/>
+    </g>
+  </g>
+
+  <!-- AR projection lines -->
+  <path d="M120,90 L80,40 M280,90 L320,40" stroke="#4db6ac" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- AR projected objects -->
+  <g transform="translate(80, 40)">
+    <polygon points="0,-10 8,5 -8,5" fill="#e0f2f1"/>
+  </g>
+
+  <g transform="translate(320, 40)">
+    <rect x="-7" y="-7" width="14" height="14" fill="#e0f2f1" transform="rotate(45)"/>
+  </g>
+
+  <!-- Text -->
+  <text x="200" y="170" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">AR功能更新</text>
+</svg>

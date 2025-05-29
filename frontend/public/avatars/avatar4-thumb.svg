@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <circle cx="50" cy="50" r="50" fill="#8b5cf6" />
+
+  <!-- 头部 -->
+  <circle cx="50" cy="50" r="35" fill="#7c3aed" />
+
+  <!-- 头盔面罩 -->
+  <path d="M25,45 C25,25 40,15 50,15 C60,15 75,25 75,45 C75,65 65,80 50,80 C35,80 25,65 25,45 Z" fill="#4c1d95" />
+
+  <!-- 面罩反光 -->
+  <ellipse cx="50" cy="40" rx="20" ry="15" fill="#7c3aed" opacity="0.5" />
+
+  <!-- 星空映射在面罩上 -->
+  <circle cx="40" cy="35" r="1" fill="white" />
+  <circle cx="60" cy="30" r="1" fill="white" />
+  <circle cx="45" cy="50" r="1" fill="white" />
+  <circle cx="55" cy="45" r="1" fill="white" />
+  <circle cx="35" cy="55" r="1" fill="white" />
+  <circle cx="65" cy="50" r="1" fill="white" />
+  <circle cx="50" cy="60" r="1" fill="white" />
+
+  <!-- 头盔装饰 -->
+  <path d="M30,30 Q50,10 70,30" fill="none" stroke="#c4b5fd" stroke-width="2" />
+
+  <!-- 宇航服颈部 -->
+  <path d="M35,75 L35,85 L65,85 L65,75" fill="#4c1d95" />
+  <path d="M35,80 L65,80" stroke="#c4b5fd" stroke-width="1" />
+
+  <!-- 氧气管连接 -->
+  <path d="M30,60 L20,70 M70,60 L80,70" stroke="#c4b5fd" stroke-width="2" />
+
+  <!-- 头盔天线 -->
+  <path d="M50,15 L50,5" stroke="#c4b5fd" stroke-width="2" />
+  <circle cx="50" cy="5" r="2" fill="#c4b5fd" />
+</svg>

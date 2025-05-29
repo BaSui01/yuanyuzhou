@@ -1,0 +1,276 @@
+// 导航栏组件样式
+.app-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+
+    &.scrolled {
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(30px);
+    }
+
+    .navbar-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 1.5rem;
+    }
+
+    .navbar-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    // Logo 区域
+    .navbar-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        color: inherit;
+
+        .logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            @media (max-width: 640px) {
+                display: none;
+            }
+        }
+    }
+
+    // 导航菜单
+    .navbar-menu {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        @media (max-width: 768px) {
+            display: none;
+        }
+
+        .nav-link {
+            color: #d1d5db;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+
+            &:hover {
+                color: #06b6d4;
+                background: rgba(6, 182, 212, 0.1);
+                transform: translateY(-1px);
+            }
+
+            &.active {
+                color: #06b6d4;
+                background: rgba(6, 182, 212, 0.2);
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -2px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 4px;
+                    height: 4px;
+                    background: #06b6d4;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+
+    // 用户操作区域
+    .navbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #d1d5db;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+
+            &:hover {
+                border-color: #06b6d4;
+                color: #06b6d4;
+                background: rgba(6, 182, 212, 0.1);
+            }
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+
+            &:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 10px 20px rgba(6, 182, 212, 0.3);
+            }
+        }
+
+        .avatar {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            border: 2px solid #06b6d4;
+            transition: all 0.3s ease;
+
+            &:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+            }
+        }
+    }
+
+    // 移动端菜单按钮
+    .mobile-menu-btn {
+        display: none;
+        background: transparent;
+        border: none;
+        color: #d1d5db;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+
+        @media (max-width: 768px) {
+            display: block;
+        }
+
+        &:hover {
+            color: #06b6d4;
+            background: rgba(6, 182, 212, 0.1);
+        }
+    }
+
+    // 移动端菜单
+    .mobile-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+
+        &.open {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+
+            .nav-link {
+                color: #d1d5db;
+                text-decoration: none;
+                padding: 0.75rem 1rem;
+                border-radius: 0.5rem;
+                transition: all 0.3s ease;
+
+                &:hover,
+                &.active {
+                    color: #06b6d4;
+                    background: rgba(6, 182, 212, 0.1);
+                }
+            }
+        }
+
+        .mobile-actions {
+            display: flex;
+            gap: 0.5rem;
+
+            .btn {
+                flex: 1;
+                text-align: center;
+                padding: 0.75rem;
+                border-radius: 0.5rem;
+                text-decoration: none;
+                font-weight: 500;
+                transition: all 0.3s ease;
+
+                &.btn-ghost {
+                    background: transparent;
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    color: #d1d5db;
+
+                    &:hover {
+                        border-color: #06b6d4;
+                        color: #06b6d4;
+                        background: rgba(6, 182, 212, 0.1);
+                    }
+                }
+
+                &.btn-primary {
+                    background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+                    color: white;
+                    border: none;
+
+                    &:hover {
+                        box-shadow: 0 5px 15px rgba(6, 182, 212, 0.3);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 滚动效果
+@media (min-width: 769px) {
+    .app-navbar {
+        &.scrolled {
+            .navbar-container {
+                padding: 0.75rem 1.5rem;
+            }
+        }
+    }
+}

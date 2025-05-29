@@ -1,87 +1,415 @@
-.hero-section {
-    position: relative;
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+.home-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: var(--text-color);
+  position: relative;
+  padding-bottom: 40px;
 }
 
-.feature-tag {
-    @apply px-4 py-2 rounded-full bg-white/10 text-white text-sm;
-    @apply flex items-center backdrop-filter backdrop-blur-lg;
-    @apply border border-white/20;
+/* 头部横幅 */
+.hero {
+  padding: 120px 20px 80px;
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary-800), var(--primary-900));
+  border-radius: 10px;
+  margin-bottom: 60px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/img/hero-pattern.svg');
+  background-size: cover;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* 特色内容区 */
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+.features {
+  padding: 40px 20px;
+  margin-bottom: 60px;
+}
+
+.feature-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
 }
 
 .feature-card {
-    @apply transition-all duration-300;
+  background-color: var(--surface-card);
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
 
-    &:hover {
-        transform: translateY(-8px);
-    }
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .feature-icon {
-    @apply w-20 h-20 mx-auto bg-white/5 rounded-full;
-    @apply flex items-center justify-center;
-    @apply border border-white/10;
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 20px;
 }
 
-.floating-elements {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
+.feature-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  font-weight: 600;
 }
 
-.floating-orb {
-    position: absolute;
-    border-radius: 50%;
-    background: linear-gradient(45deg, rgba(6, 182, 212, 0.3), rgba(139, 92, 246, 0.3));
-    filter: blur(40px);
-
-    &.orb-1 {
-        width: 300px;
-        height: 300px;
-        top: 20%;
-        left: 10%;
-        animation: float 8s ease-in-out infinite;
-    }
-
-    &.orb-2 {
-        width: 200px;
-        height: 200px;
-        top: 60%;
-        right: 20%;
-        animation: float 6s ease-in-out infinite reverse;
-    }
-
-    &.orb-3 {
-        width: 150px;
-        height: 150px;
-        bottom: 20%;
-        left: 60%;
-        animation: float 10s ease-in-out infinite;
-    }
+.feature-card p {
+  opacity: 0.8;
+  line-height: 1.5;
 }
 
-.stat-item {
-    @apply transition-all duration-300;
-
-    &:hover {
-        transform: scale(1.05);
-    }
+/* 元宇宙展示区 */
+.metaverse-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 40px 20px;
+  margin-bottom: 60px;
+  background-color: var(--surface-section);
+  border-radius: 10px;
 }
 
+.showcase-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section-description {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.feature-list li {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.feature-list li i {
+  color: var(--primary-color);
+  margin-right: 10px;
+}
+
+.showcase-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.5s ease;
+}
+
+.showcase-image:hover .preview-image {
+  transform: scale(1.05);
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 300px;
+  background-color: var(--surface-hover);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+
+/* 最新动态 */
+.news {
+  padding: 40px 20px;
+  margin-bottom: 60px;
+}
+
+.news-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.news-card {
+  background-color: var(--surface-card);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+}
+
+.news-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.article-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.news-card:hover .article-image {
+  transform: scale(1.1);
+}
+
+.news-content {
+  padding: 20px;
+}
+
+.news-date {
+  font-size: 0.9rem;
+  color: var(--text-color-secondary);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.news-title {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.news-excerpt {
+  margin-bottom: 15px;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+.news-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+}
+
+.view-all {
+  text-align: center;
+}
+
+.view-all-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* 注册引导 */
+.signup-cta {
+  background: linear-gradient(135deg, var(--primary-700), var(--primary-800));
+  padding: 60px 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  margin-bottom: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.signup-cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/img/cta-pattern.svg');
+  background-size: cover;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-content h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.cta-content p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+/* 返回顶部按钮 */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+  z-index: 999;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: translateY(-5px);
+}
+
+/* 演示对话框 */
+.demo-dialog {
+  max-width: 800px;
+}
+
+.demo-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.demo-placeholder {
+  background-color: var(--surface-hover);
+  border-radius: 10px;
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.demo-placeholder i {
+  font-size: 3rem;
+  color: var(--primary-color);
+}
+
+/* 加载动画 */
+:deep(.loading-spinner) {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+/* 响应式调整 */
 @media (max-width: 768px) {
-    .hero-section h1 {
-        @apply text-4xl;
-    }
+  .metaverse-showcase {
+    grid-template-columns: 1fr;
+  }
 
-    .hero-section p {
-        @apply text-lg;
-    }
+  .title {
+    font-size: 2rem;
+  }
 
-    .feature-card {
-        @apply p-6;
-    }
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .demo-placeholder {
+    padding: 40px;
+  }
+}
+
+// 确保内容区域有足够的顶部边距
+.home-container {
+  padding-top: 80px; // 导航栏高度 + 额外空间
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+// 修复滚动问题
+html,
+body {
+  overflow-y: auto !important;
+  height: 100%;
 }

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200">
+  <!-- Background -->
+  <rect width="400" height="200" fill="#4a148c"/>
+
+  <!-- Decorative elements -->
+  <circle cx="50" cy="50" r="80" fill="#6a1b9a" opacity="0.6"/>
+  <circle cx="350" cy="150" r="100" fill="#6a1b9a" opacity="0.4"/>
+
+  <!-- Stage -->
+  <rect x="50" y="130" width="300" height="20" fill="#9c27b0"/>
+
+  <!-- Music notes -->
+  <g fill="#e1bee7">
+    <path d="M100,80 Q110,60 120,80 Q130,100 140,80 L140,130 L100,130 Z" opacity="0.8"/>
+    <path d="M160,60 Q170,40 180,60 Q190,80 200,60 L200,130 L160,130 Z" opacity="0.8"/>
+    <path d="M220,70 Q230,50 240,70 Q250,90 260,70 L260,130 L220,130 Z" opacity="0.8"/>
+    <path d="M280,50 Q290,30 300,50 Q310,70 320,50 L320,130 L280,130 Z" opacity="0.8"/>
+  </g>
+
+  <!-- Music symbols -->
+  <g fill="white">
+    <!-- Music note 1 -->
+    <ellipse cx="120" cy="50" rx="8" ry="6"/>
+    <path d="M128,50 L128,110" stroke="white" stroke-width="2"/>
+
+    <!-- Music note 2 -->
+    <ellipse cx="180" cy="40" rx="8" ry="6"/>
+    <path d="M188,40 L188,100" stroke="white" stroke-width="2"/>
+
+    <!-- Music note 3 -->
+    <ellipse cx="240" cy="60" rx="8" ry="6"/>
+    <path d="M248,60 L248,120" stroke="white" stroke-width="2"/>
+
+    <!-- Music note 4 -->
+    <ellipse cx="300" cy="30" rx="8" ry="6"/>
+    <path d="M308,30 L308,90" stroke="white" stroke-width="2"/>
+  </g>
+
+  <!-- Text -->
+  <text x="200" y="170" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">虚拟音乐会</text>
+</svg>

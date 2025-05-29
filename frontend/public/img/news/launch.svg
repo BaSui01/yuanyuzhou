@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200">
+  <!-- Background -->
+  <rect width="400" height="200" fill="#1e3a5f"/>
+
+  <!-- Decorative elements -->
+  <circle cx="50" cy="150" r="80" fill="#2a4d7f" opacity="0.6"/>
+  <circle cx="350" cy="50" r="100" fill="#2a4d7f" opacity="0.4"/>
+
+  <!-- Platform launch rocket -->
+  <g transform="translate(200, 100) scale(0.8)">
+    <!-- Rocket body -->
+    <path d="M0,-60 L15,30 L-15,30 Z" fill="#f44336"/>
+    <rect x="-15" y="30" width="30" height="20" fill="#e0e0e0"/>
+
+    <!-- Rocket windows -->
+    <circle cx="0" cy="-10" r="5" fill="#29b6f6"/>
+    <circle cx="0" cy="10" r="5" fill="#29b6f6"/>
+
+    <!-- Rocket fins -->
+    <path d="M-15,30 L-30,50 L-15,50 Z" fill="#f44336"/>
+    <path d="M15,30 L30,50 L15,50 Z" fill="#f44336"/>
+
+    <!-- Rocket flames -->
+    <path d="M-10,50 L0,80 L10,50 Z" fill="#ffeb3b"/>
+    <path d="M-5,50 L0,70 L5,50 Z" fill="#ff9800"/>
+  </g>
+
+  <!-- Text -->
+  <text x="200" y="170" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">平台正式发布</text>
+</svg>

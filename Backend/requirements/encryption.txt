@@ -1,0 +1,45 @@
+# Django后端加密解密服务依赖包
+
+# 基础加密库
+cryptography>=41.0.0,<42.0.0  # 现代加密算法库
+pycryptodome>=3.19.0,<4.0.0  # AES/RSA高性能加密
+bcrypt>=4.1.0,<5.0.0  # 密码哈希算法
+
+# 密钥派生和管理
+argon2-cffi>=23.1.0,<24.0.0  # Argon2密码哈希
+passlib[argon2,bcrypt]>=1.7.4,<2.0.0  # 密码验证库
+
+# 数据压缩
+lz4>=4.3.0,<5.0.0  # 高速压缩算法
+zstandard>=0.22.0,<1.0.0  # Facebook压缩算法
+
+# 环境变量管理
+python-decouple>=3.8,<4.0  # 环境变量解析
+
+# Redis缓存（会话存储）
+redis>=5.0.0,<6.0.0  # Redis客户端
+hiredis>=2.2.0,<3.0.0  # Redis高性能解析器
+
+# 时间和日期处理
+python-dateutil>=2.8.2,<3.0.0  # 时间解析工具
+
+# JSON Web Token（可选）
+PyJWT[crypto]>=2.8.0,<3.0.0  # JWT令牌处理
+
+# 性能监控
+psutil>=5.9.0,<6.0.0  # 系统资源监控
+
+# 开发和测试工具
+pytest-benchmark>=4.0.0,<5.0.0  # 性能基准测试
+memory-profiler>=0.61.0,<1.0.0  # 内存使用分析
+
+# 安全相关
+pyotp>=2.9.0,<3.0.0  # TOTP/HOTP实现
+qrcode[pil]>=7.4.2,<8.0.0  # 二维码生成
+
+# HTTP请求（测试用）
+requests>=2.31.0,<3.0.0  # HTTP客户端
+
+# 异步支持（可选）
+aioredis>=2.0.0,<3.0.0  # 异步Redis客户端
+asyncio-throttle>=1.0.2,<2.0.0  # 异步限流

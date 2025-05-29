@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="#f0f9ff" />
+
+  <!-- 元宇宙更新图标 -->
+  <g transform="translate(400, 250) scale(1.5)">
+    <!-- 外圆 -->
+    <circle cx="0" cy="0" r="120" fill="#dbeafe" />
+
+    <!-- 虚拟世界图标 -->
+    <g transform="translate(-60, -60)">
+      <!-- 数字地球 -->
+      <circle cx="60" cy="60" r="50" fill="#3b82f6" opacity="0.8" />
+      <path d="M 35 40 Q 60 10 85 40 Q 110 70 85 90 Q 60 110 35 90 Q 10 70 35 40" fill="none" stroke="#ffffff" stroke-width="2" />
+      <path d="M 60 10 L 60 110" stroke="#ffffff" stroke-width="2" />
+      <path d="M 10 60 L 110 60" stroke="#ffffff" stroke-width="2" />
+
+      <!-- 更新图标 -->
+      <g transform="translate(90, 20) rotate(45)">
+        <path d="M 0 0 A 30 30 0 1 1 0 60 A 30 30 0 0 1 0 0" stroke="#0ea5e9" stroke-width="6" fill="none" stroke-dasharray="10 5" />
+        <path d="M 0 15 L 0 -15 M -15 0 L 15 0" stroke="#0ea5e9" stroke-width="6" stroke-linecap="round" />
+      </g>
+    </g>
+  </g>
+
+  <!-- 标题文本 -->
+  <text x="400" y="430" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#0369a1">元宇宙平台更新</text>
+</svg>

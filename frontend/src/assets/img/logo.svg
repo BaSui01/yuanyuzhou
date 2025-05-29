@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <!-- 背景 -->
+  <rect width="200" height="60" fill="none"/>
+
+  <!-- 元宇宙文字 -->
+  <text x="10" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#06b6d4">元宇宙</text>
+
+  <!-- 装饰元素 -->
+  <circle cx="160" cy="30" r="20" fill="#06b6d4" opacity="0.8"/>
+  <circle cx="170" cy="20" r="12" fill="#0ea5e9" opacity="0.6"/>
+  <circle cx="150" cy="40" r="15" fill="#0284c7" opacity="0.7"/>
+</svg>

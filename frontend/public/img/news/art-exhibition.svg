@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="#fdf2f8" />
+
+  <!-- 艺术展览图标 -->
+  <g transform="translate(400, 250)">
+    <!-- 画廊背景 -->
+    <rect x="-200" y="-150" width="400" height="300" rx="20" fill="#fbcfe8" />
+
+    <!-- 画框1 -->
+    <g transform="translate(-130, 0)">
+      <rect x="-50" y="-70" width="100" height="140" rx="5" fill="#ffffff" stroke="#db2777" stroke-width="4" />
+      <!-- 抽象画1 -->
+      <circle cx="-25" cy="-30" r="20" fill="#ec4899" />
+      <rect x="5" y="-50" width="30" height="30" fill="#be185d" />
+      <path d="M -40 10 L -10 30 L 10 0 L 40 20" stroke="#9d174d" stroke-width="5" fill="none" />
+    </g>
+
+    <!-- 画框2 -->
+    <g transform="translate(0, 0)">
+      <rect x="-50" y="-70" width="100" height="140" rx="5" fill="#ffffff" stroke="#db2777" stroke-width="4" />
+      <!-- 抽象画2 -->
+      <path d="M -30 -40 L 30 -40 L 0 40" fill="#be185d" />
+      <circle cx="0" cy="-10" r="15" fill="#ffffff" />
+    </g>
+
+    <!-- 画框3 -->
+    <g transform="translate(130, 0)">
+      <rect x="-50" y="-70" width="100" height="140" rx="5" fill="#ffffff" stroke="#db2777" stroke-width="4" />
+      <!-- 抽象画3 -->
+      <rect x="-35" y="-55" width="70" height="40" fill="#ec4899" />
+      <rect x="-35" y="-5" width="70" height="40" fill="#be185d" />
+      <rect x="-35" y="45" width="70" height="10" fill="#9d174d" />
+    </g>
+
+    <!-- 底部装饰 -->
+    <rect x="-200" y="100" width="400" height="50" fill="#f9a8d4" />
+  </g>
+
+  <!-- 标题文本 -->
+  <text x="400" y="430" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#9d174d">元宇宙艺术展览</text>
+</svg>

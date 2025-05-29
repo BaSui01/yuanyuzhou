@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>生成PWA图标</title>
+  <style>
+    body {
+      font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      background: #f8fafc;
+    }
+    canvas {
+      margin: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #06b6d4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0891b2;
+    }
+  </style>
+</head>
+<body>
+  <h1>PWA图标生成器</h1>
+  <p>点击下方按钮下载图标</p>
+
+  <canvas id="icon192" width="192" height="192"></canvas>
+  <canvas id="icon512" width="512" height="512"></canvas>
+
+  <div class="buttons">
+    <button onclick="downloadIcon(192)">下载192x192图标</button>
+    <button onclick="downloadIcon(512)">下载512x512图标</button>
+  </div>
+
+  <script>
+    // 绘制图标
+    function drawIcon(size) {
+      const canvas = document.getElementById(`icon${size}`);
+      const ctx = canvas.getContext('2d');
+
+      // 背景渐变
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#0a0a0f');
+      gradient.addColorStop(0.5, '#1a1a2e');
+      gradient.addColorStop(1, '#16213e');
+
+      // 填充背景
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, size, size);
+
+      // 绘制圆形
+      ctx.beginPath();
+      ctx.arc(size/2, size/2, size*0.35, 0, Math.PI * 2);
+      ctx.fillStyle = '#06b6d4';
+      ctx.fill();
+
+      // 绘制发光效果
+      ctx.shadowColor = '#06b6d4';
+      ctx.shadowBlur = size * 0.1;
+      ctx.beginPath();
+      ctx.arc(size/2, size/2, size*0.3, 0, Math.PI * 2);
+      ctx.fillStyle = '#06b6d4';
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // 绘制文字
+      ctx.font = `bold ${size*0.2}px Arial`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = 'white';
+      ctx.fillText('元', size/2, size/2);
+    }
+
+    // 下载图标
+    function downloadIcon(size) {
+      const canvas = document.getElementById(`icon${size}`);
+      const link = document.createElement('a');
+      link.download = `icon-${size}x${size}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    // 初始化
+    window.onload = function() {
+      drawIcon(192);
+      drawIcon(512);
+    };
+  </script>
+</body>
+</html>

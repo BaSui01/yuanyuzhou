@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- 背景圆 -->
+  <circle cx="50" cy="50" r="48" fill="#3B82F6" />
+
+  <!-- AI 脸部 -->
+  <circle cx="50" cy="45" r="25" fill="#FFFFFF" />
+
+  <!-- 眼睛 -->
+  <circle cx="40" cy="40" r="5" fill="#3B82F6" />
+  <circle cx="60" cy="40" r="5" fill="#3B82F6" />
+
+  <!-- 嘴巴 -->
+  <path d="M35,55 Q50,65 65,55" stroke="#3B82F6" stroke-width="3" fill="none" />
+
+  <!-- 天线 -->
+  <line x1="50" y1="20" x2="50" y2="5" stroke="#FFFFFF" stroke-width="3" />
+  <circle cx="50" cy="5" r="3" fill="#FFFFFF" />
+
+  <!-- 电路图案 -->
+  <path d="M15,70 H30 V80 H45 V70 H55 V80 H70 V70 H85" stroke="#FFFFFF" stroke-width="2" fill="none" />
+</svg>

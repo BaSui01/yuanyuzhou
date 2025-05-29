@@ -1,0 +1,154 @@
+// 导入Sass模块
+@use "sass:map";
+@use "sass:string";
+@use "sass:math";
+@use "sass:color";
+@use "./variables" as vars;
+
+// 悬停提升效果
+@mixin hover-lift($distance: 3px) {
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: translateY(-$distance);
+  }
+}
+
+// 玻璃效果
+@mixin glass-effect($opacity: 0.8) {
+  background-color: rgba(255, 255, 255, $opacity);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+// 发光效果
+@mixin glow-effect($color, $size: 10px, $opacity: 0.5) {
+  box-shadow: 0 0 $size rgba($color, $opacity);
+}
+
+// 文本截断
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 多行文本截断
+@mixin text-truncate-lines($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 弹性盒子居中
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// 绝对定位居中
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// 清除浮动
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// 隐藏滚动条但保留功能
+@mixin hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// 自定义滚动条
+@mixin custom-scrollbar($width: 6px, $track-color: #f1f1f1, $thumb-color: #888) {
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $width / 2;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: darken($thumb-color, 10%);
+  }
+}
+
+// 响应式图片
+@mixin responsive-image {
+  max-width: 100%;
+  height: auto;
+}
+
+// 卡片阴影
+@mixin card-shadow($level: 'md') {
+  box-shadow: vars.shadow($level);
+}
+
+// 按钮基础样式
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+// 渐变背景
+@mixin gradient-bg($start-color, $end-color, $direction: 135deg) {
+  background: linear-gradient($direction, $start-color, $end-color);
+}
+
+// 边框动画
+@mixin border-animation($color: #4287f5, $duration: 2s) {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    border-radius: inherit;
+    animation: border-pulse $duration infinite;
+  }
+
+  @keyframes border-pulse {
+    0% {
+      border-color: rgba($color, 0.2);
+    }
+    50% {
+      border-color: rgba($color, 0.8);
+    }
+    100% {
+      border-color: rgba($color, 0.2);
+    }
+  }
+}

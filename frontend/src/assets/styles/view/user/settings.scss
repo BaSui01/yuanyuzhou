@@ -1,0 +1,338 @@
+@import '../../variables';
+
+.settings-view {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+// 设置头部
+.settings-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e9ecef;
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        color: $text-color-dark;
+        font-weight: 700;
+    }
+
+    p {
+        color: $text-color-light;
+        font-size: 1.1rem;
+    }
+}
+
+// 设置内容
+.settings-content {
+    background-color: #fff;
+    border-radius: $border-radius;
+    box-shadow: $shadow-sm;
+    overflow: hidden;
+
+    // 标签页样式覆盖
+    :deep(.p-tabview-nav) {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #e9ecef;
+        padding: 0 1rem;
+
+        li {
+            margin-right: 0.5rem;
+
+            .p-tabview-nav-link {
+                padding: 1rem 1.5rem;
+                color: $text-color-light;
+                font-weight: 500;
+                border: none;
+                border-bottom: 2px solid transparent;
+                border-radius: 0;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.03);
+                    border-color: rgba(0, 0, 0, 0.1);
+                    color: $text-color-dark;
+                }
+
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+
+            &.p-highlight {
+                .p-tabview-nav-link {
+                    background-color: transparent;
+                    color: $primary-color;
+                    border-color: $primary-color;
+                }
+            }
+        }
+    }
+
+    :deep(.p-tabview-panels) {
+        padding: 2rem;
+    }
+}
+
+// 设置表单
+.settings-form {
+    max-width: 800px;
+
+    h2 {
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+        margin-top: 2.5rem;
+        color: $text-color-dark;
+        font-weight: 600;
+        border-bottom: 1px solid #e9ecef;
+        padding-bottom: 0.75rem;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: $text-color-dark;
+        }
+
+        small {
+            display: block;
+            margin-top: 0.25rem;
+            color: $text-color-muted;
+            font-size: 0.85rem;
+        }
+    }
+
+    .form-actions {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: flex-start;
+        gap: 1rem;
+    }
+}
+
+// 两步验证状态
+.two-factor-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    border-radius: $border-radius;
+    padding: 1.5rem;
+
+    .status-info {
+        h3 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            color: $text-color-dark;
+        }
+
+        p {
+            font-size: 0.9rem;
+            color: $text-color-light;
+        }
+    }
+}
+
+// 隐私选项
+.privacy-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    border-radius: $border-radius;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+
+    .option-label {
+        h3 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            color: $text-color-dark;
+        }
+
+        p {
+            font-size: 0.9rem;
+            color: $text-color-light;
+            margin-bottom: 0;
+        }
+    }
+
+    .option-control {
+        min-width: 200px;
+    }
+}
+
+// 通知选项
+.notification-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    border-radius: $border-radius;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+
+    .option-label {
+        h3 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            color: $text-color-dark;
+        }
+
+        p {
+            font-size: 0.9rem;
+            color: $text-color-light;
+            margin-bottom: 0;
+        }
+    }
+}
+
+// 账号状态
+.account-status {
+    background-color: #f8f9fa;
+    border-radius: $border-radius;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+
+    .status-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+
+        h3 {
+            font-size: 1rem;
+            color: $text-color-dark;
+            margin-bottom: 0;
+        }
+    }
+
+    .status-details {
+        p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: $text-color-light;
+        }
+    }
+}
+
+// 危险区域
+.danger-zone {
+    border: 1px solid $error-color;
+    border-radius: $border-radius;
+    padding: 1.5rem;
+    margin-top: 2rem;
+
+    .danger-action {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .action-info {
+            h3 {
+                font-size: 1rem;
+                margin-bottom: 0.25rem;
+                color: $error-color;
+            }
+
+            p {
+                font-size: 0.9rem;
+                color: $text-color-light;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+// 确认删除账号对话框
+.confirmation-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    i {
+        font-size: 2rem;
+        color: $error-color;
+    }
+}
+
+// 响应式调整
+@media (max-width: 768px) {
+    .settings-content {
+        :deep(.p-tabview-nav) {
+            display: flex;
+            flex-wrap: wrap;
+
+            li {
+                margin-bottom: 0.25rem;
+            }
+        }
+    }
+
+    .privacy-option,
+    .notification-option {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+
+        .option-label {
+            margin-bottom: 0.5rem;
+        }
+
+        .option-control {
+            width: 100%;
+        }
+    }
+
+    .danger-action {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+
+        .action-button {
+            align-self: flex-end;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .settings-header {
+        h1 {
+            font-size: 1.75rem;
+        }
+    }
+
+    .settings-content {
+        :deep(.p-tabview-nav) {
+            li {
+                .p-tabview-nav-link {
+                    padding: 0.75rem 1rem;
+                }
+            }
+        }
+
+        :deep(.p-tabview-panels) {
+            padding: 1.5rem 1rem;
+        }
+    }
+
+    .form-actions {
+        flex-direction: column;
+
+        button {
+            width: 100%;
+        }
+    }
+}

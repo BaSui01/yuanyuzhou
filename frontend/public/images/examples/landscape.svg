@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- 天空 -->
+  <rect width="400" height="300" fill="#87CEEB" />
+
+  <!-- 太阳 -->
+  <circle cx="320" cy="60" r="30" fill="#FFD700" />
+
+  <!-- 云朵 -->
+  <ellipse cx="100" cy="60" rx="40" ry="20" fill="#FFFFFF" opacity="0.8" />
+  <ellipse cx="130" cy="60" rx="30" ry="15" fill="#FFFFFF" opacity="0.8" />
+  <ellipse cx="70" cy="65" rx="30" ry="15" fill="#FFFFFF" opacity="0.8" />
+
+  <ellipse cx="250" cy="40" rx="30" ry="15" fill="#FFFFFF" opacity="0.6" />
+  <ellipse cx="270" cy="45" rx="20" ry="10" fill="#FFFFFF" opacity="0.6" />
+
+  <!-- 远山 -->
+  <path d="M0,120 L60,70 L100,100 L160,60 L220,110 L280,80 L340,90 L400,70 L400,300 L0,300 Z" fill="#6B8E23" opacity="0.6" />
+
+  <!-- 中间山 -->
+  <path d="M0,140 L40,120 L80,150 L140,110 L200,160 L260,120 L320,140 L360,120 L400,150 L400,300 L0,300 Z" fill="#556B2F" opacity="0.8" />
+
+  <!-- 近山 -->
+  <path d="M0,180 L50,150 L100,180 L150,140 L200,190 L250,160 L300,180 L350,150 L400,170 L400,300 L0,300 Z" fill="#228B22" />
+
+  <!-- 草地 -->
+  <path d="M0,200 L400,200 L400,300 L0,300 Z" fill="#7CFC00" />
+
+  <!-- 湖泊 -->
+  <ellipse cx="200" cy="250" rx="150" ry="30" fill="#4682B4" />
+
+  <!-- 树木 -->
+  <g transform="translate(50, 190)">
+    <rect x="-5" y="0" width="10" height="20" fill="#8B4513" />
+    <polygon points="0,-30 -20,0 20,0" fill="#228B22" />
+    <polygon points="0,-40 -15,-15 15,-15" fill="#228B22" />
+    <polygon points="0,-50 -10,-30 10,-30" fill="#228B22" />
+  </g>
+
+  <g transform="translate(350, 170)">
+    <rect x="-6" y="0" width="12" height="30" fill="#8B4513" />
+    <polygon points="0,-40 -25,0 25,0" fill="#006400" />
+    <polygon points="0,-50 -20,-15 20,-15" fill="#006400" />
+    <polygon points="0,-60 -15,-30 15,-30" fill="#006400" />
+  </g>
+
+  <!-- 小路 -->
+  <path d="M150,300 Q200,250 250,300" fill="#CD853F" />
+
+  <!-- 小房子 -->
+  <g transform="translate(300, 190)">
+    <rect x="-15" y="0" width="30" height="20" fill="#CD5C5C" />
+    <polygon points="-15,0 0,-15 15,0" fill="#8B0000" />
+    <rect x="-5" y="10" width="10" height="10" fill="#4682B4" />
+  </g>
+</svg>

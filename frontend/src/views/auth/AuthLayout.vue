@@ -1,34 +1,25 @@
 <template>
-  <div class="auth-container">
-    <div class="auth-card">
+  <div class="auth-layout">
+    <div class="auth-container">
       <div class="auth-logo">
-        <img src="@/assets/logo.png" alt="Logo" />
-        <h1>元宇宙社交空间</h1>
+        <img src="@/assets/img/logo.svg" alt="元宇宙" />
       </div>
       <div class="auth-content">
         <router-view />
       </div>
       <div class="auth-footer">
-        <p>© 2023 元宇宙社交空间 - Web版桌宠AI助手</p>
+        <p>&copy; {{ currentYear }} 元宇宙社交空间. 保留所有权利.</p>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-// 使用外部JS文件，不内嵌JS
-import { onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { computed } from 'vue'
 
-const router = useRouter();
-
-onMounted(() => {
-  // 可以在这里添加认证布局加载后的逻辑
-  console.log('Auth layout mounted');
-});
+const currentYear = computed(() => new Date().getFullYear())
 </script>
 
 <style lang="scss">
-// 引入外部SCSS文件
-@import '@/assets/styles/view/auth/auth.scss';
+@use '@/assets/styles/view/auth/auth.scss';
 </style>

@@ -1,0 +1,291 @@
+# Django核心
+Django==4.2.7
+djangorestframework==3.14.0
+
+# 数据库
+mysqlclient==2.2.0
+
+# 缓存和任务队列
+redis==5.0.1
+django-redis==5.4.0
+celery==5.3.4
+
+# CORS支持
+django-cors-headers==4.3.1
+
+# 过滤和搜索
+django-filter==23.3
+
+# 图像处理
+Pillow==10.1.0
+
+# 静态文件处理
+whitenoise==6.6.0
+
+# API文档
+drf-spectacular==0.26.5
+
+# 环境变量管理
+python-decouple==3.8
+
+# 时区处理
+pytz==2023.3
+
+# 开发工具
+django-debug-toolbar==4.2.0
+
+# 测试工具
+pytest==7.4.3
+pytest-django==4.7.0
+pytest-cov==4.1.0
+factory-boy==3.3.0
+
+# 代码质量
+flake8==6.1.0
+black==23.11.0
+isort==5.12.0
+
+# 安全
+django-extensions==3.2.3
+
+# 数据验证
+validators==0.22.0
+
+# HTTP请求
+requests==2.31.0
+
+# 异步支持
+channels==4.0.0
+channels-redis==4.1.0
+
+# 序列化
+orjson==3.9.10
+
+# 监控和日志
+sentry-sdk==1.38.0
+
+# 性能优化
+django-silk==5.0.4
+
+# 批量操作
+django-bulk-update==2.2.0
+
+# 数据导入导出
+django-import-export==3.3.1
+
+# JWT认证
+djangorestframework-simplejwt==5.3.0
+
+# 邮件
+django-anymail==10.2
+
+# 文件存储
+django-storages==1.14.2
+boto3==1.34.0
+
+# 任务调度
+django-celery-beat==2.5.0
+django-celery-results==2.5.0
+
+# 配置管理
+django-configurations==2.5
+
+# 国际化
+django-modeltranslation==0.18.11
+
+# AI和异步HTTP客户端
+aiohttp==3.9.1
+aiofiles==23.2.0
+
+# Excel文档处理
+openpyxl==3.1.2
+
+# JWT令牌处理
+PyJWT==2.8.0
+
+# 加密和安全
+cryptography==41.0.7
+
+# 数据序列化
+msgpack==1.0.7
+
+# 网络请求增强
+httpx==0.25.2
+
+# 异步支持库
+asyncio-mqtt==0.16.1
+
+# 数据科学和分析 (可选)
+pandas==2.1.4
+numpy==1.24.4
+
+# 机器学习工具 (可选)
+scikit-learn==1.3.2
+
+# 自然语言处理 (可选)
+nltk==3.8.1
+
+# 图像处理增强
+opencv-python==4.8.1.78
+
+# 音频处理 (可选)
+librosa==0.10.1
+
+# 视频处理 (可选)
+moviepy==1.0.3
+
+# 文档解析
+python-docx==1.1.0
+PyPDF2==3.0.1
+
+# HTML解析
+beautifulsoup4==4.12.2
+lxml==4.9.3
+
+# Markdown处理
+markdown==3.5.1
+
+# 二维码生成
+qrcode[pil]==7.4.2
+
+# 条形码生成
+python-barcode==1.0.1
+
+# 地理位置处理
+geopy==2.4.1
+
+# 时间处理增强
+python-dateutil==2.8.2
+
+# 配置文件处理
+PyYAML==6.0.1
+toml==0.10.2
+
+# 多进程和并发
+multiprocessing-logging==0.3.4
+
+# 内存优化
+memory-profiler==0.61.0
+
+# 缓存增强
+python-memcached==1.62
+
+# 搜索引擎 (可选)
+elasticsearch==8.11.1
+elasticsearch-dsl==8.11.0
+
+# 消息队列 (可选)
+pika==1.3.2
+
+# 监控和指标
+prometheus-client==0.19.0
+
+# API限流
+django-ratelimit==4.1.0
+
+# 环境检测
+python-dotenv==1.0.0
+
+# 字符编码检测
+chardet==5.2.0
+
+# 压缩支持
+python-zlib==1.1
+
+# 数据库连接池
+psycopg2-binary==2.9.9
+
+# 缓存标签
+django-cache-tree==1.2.1
+
+# 分布式锁
+redis-py-cluster==2.1.3
+
+# 健康检查
+django-health-check==3.17.0
+
+# API版本控制
+django-rest-framework-version-transforms==0.3.0
+
+# 速率限制
+django-ratelimit-backend==2.0
+
+# 错误追踪
+rollbar==1.0.0
+
+# 性能分析
+py-spy==0.3.14
+
+# 代码覆盖率
+coverage==7.3.2
+
+# 数据验证增强
+cerberus==1.3.5
+
+# 字符串处理
+fuzzywuzzy==0.18.0
+python-levenshtein==0.23.0
+
+# 网络工具
+ping3==4.0.4
+speedtest-cli==2.1.3
+
+# 系统信息
+psutil==5.9.6
+
+# 文件监控
+watchdog==3.0.0
+
+# 命令行工具
+click==8.1.7
+
+# 进度条
+tqdm==4.66.1
+
+# 彩色输出
+colorama==0.4.6
+termcolor==2.4.0
+
+# 调试工具
+ipython==8.17.2
+ipdb==0.13.13
+
+# 代码格式化
+autopep8==2.0.4
+
+# 依赖管理
+pip-tools==7.3.0
+
+# 开发服务器
+uvicorn==0.24.0
+gunicorn==21.2.0
+
+# 生产环境 WSGI
+waitress==2.1.2
+
+# 环境变量
+environs==10.3.0
+
+# 配置验证
+marshmallow==3.20.1
+
+# API测试
+httpie==3.2.2
+
+# 假数据生成
+Faker==20.1.0
+
+# 时间处理
+arrow==1.3.0
+
+# 缓存工具
+cachetools==5.3.2
+
+# 任务监控
+flower==2.0.1
+
+# 数据库迁移工具
+alembic==1.13.0
+
+# ORM增强
+sqlalchemy==2.0.23

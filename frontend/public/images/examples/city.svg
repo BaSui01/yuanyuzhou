@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- 天空背景 -->
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a1c40" />
+      <stop offset="100%" stop-color="#4f4ca8" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#skyGradient)" />
+
+  <!-- 星星 -->
+  <g fill="white">
+    <circle cx="50" cy="30" r="1" opacity="0.8" />
+    <circle cx="120" cy="40" r="1" opacity="0.6" />
+    <circle cx="200" cy="20" r="1" opacity="0.7" />
+    <circle cx="250" cy="50" r="1" opacity="0.9" />
+    <circle cx="300" cy="25" r="1" opacity="0.7" />
+    <circle cx="350" cy="45" r="1" opacity="0.8" />
+    <circle cx="380" cy="15" r="1" opacity="0.6" />
+    <circle cx="30" cy="60" r="1" opacity="0.7" />
+    <circle cx="80" cy="75" r="1" opacity="0.8" />
+    <circle cx="150" cy="65" r="1" opacity="0.6" />
+    <circle cx="220" cy="70" r="1" opacity="0.9" />
+    <circle cx="270" cy="80" r="1" opacity="0.7" />
+    <circle cx="330" cy="75" r="1" opacity="0.8" />
+    <circle cx="370" cy="55" r="1" opacity="0.6" />
+  </g>
+
+  <!-- 月亮 -->
+  <circle cx="320" cy="60" r="25" fill="#FFFDE7" />
+  <circle cx="310" cy="55" r="22" fill="#1a1c40" />
+
+  <!-- 远处的山 -->
+  <path d="M0,180 Q100,120 200,170 Q300,120 400,180 L400,300 L0,300 Z" fill="#262654" />
+
+  <!-- 远处的建筑群剪影 -->
+  <path d="M0,180 L30,180 L30,140 L45,140 L45,165 L60,165 L60,130 L70,120 L80,130 L80,150 L95,150 L95,170 L110,170 L110,120 L125,120 L125,180 L400,180 L400,300 L0,300 Z" fill="#181830" />
+
+  <!-- 中间建筑群 -->
+  <g>
+    <!-- 摩天大楼1 -->
+    <rect x="140" y="100" width="30" height="180" fill="#383860" />
+    <g fill="#FFEB3B" opacity="0.8">
+      <rect x="145" y="110" width="5" height="8" />
+      <rect x="155" y="110" width="5" height="8" />
+      <rect x="145" y="125" width="5" height="8" />
+      <rect x="155" y="125" width="5" height="8" />
+      <rect x="145" y="140" width="5" height="8" />
+      <rect x="155" y="140" width="5" height="8" />
+      <rect x="145" y="155" width="5" height="8" />
+      <rect x="155" y="155" width="5" height="8" />
+      <rect x="145" y="170" width="5" height="8" />
+      <rect x="155" y="170" width="5" height="8" />
+      <rect x="145" y="185" width="5" height="8" />
+      <rect x="155" y="185" width="5" height="8" />
+    </g>
+
+    <!-- 摩天大楼2 -->
+    <rect x="180" y="80" width="40" height="200" fill="#273469" />
+    <rect x="190" y="80" width="20" height="20" fill="#4f4ca8" />
+    <g fill="#FFEB3B" opacity="0.8">
+      <rect x="185" y="110" width="5" height="8" />
+      <rect x="195" y="110" width="5" height="8" />
+      <rect x="205" y="110" width="5" height="8" />
+      <rect x="185" y="125" width="5" height="8" />
+      <rect x="195" y="125" width="5" height="8" />
+      <rect x="205" y="125" width="5" height="8" />
+      <rect x="185" y="140" width="5" height="8" />
+      <rect x="195" y="140" width="5" height="8" />
+      <rect x="205" y="140" width="5" height="8" />
+      <rect x="185" y="155" width="5" height="8" />
+      <rect x="195" y="155" width="5" height="8" />
+      <rect x="205" y="155" width="5" height="8" />
+      <rect x="185" y="170" width="5" height="8" />
+      <rect x="195" y="170" width="5" height="8" />
+      <rect x="205" y="170" width="5" height="8" />
+    </g>
+
+    <!-- 摩天大楼3 -->
+    <rect x="230" y="120" width="25" height="160" fill="#303066" />
+    <g fill="#FFEB3B" opacity="0.8">
+      <rect x="235" y="130" width="5" height="8" />
+      <rect x="245" y="130" width="5" height="8" />
+      <rect x="235" y="145" width="5" height="8" />
+      <rect x="245" y="145" width="5" height="8" />
+      <rect x="235" y="160" width="5" height="8" />
+      <rect x="245" y="160" width="5" height="8" />
+      <rect x="235" y="175" width="5" height="8" />
+      <rect x="245" y="175" width="5" height="8" />
+    </g>
+
+    <!-- 摩天大楼4 -->
+    <rect x="260" y="90" width="35" height="190" fill="#1d2761" />
+    <polygon points="260,90 295,90 277.5,70" fill="#1d2761" />
+    <g fill="#FFEB3B" opacity="0.8">
+      <rect x="265" y="110" width="5" height="8" />
+      <rect x="275" y="110" width="5" height="8" />
+      <rect x="285" y="110" width="5" height="8" />
+      <rect x="265" y="125" width="5" height="8" />
+      <rect x="275" y="125" width="5" height="8" />
+      <rect x="285" y="125" width="5" height="8" />
+      <rect x="265" y="140" width="5" height="8" />
+      <rect x="275" y="140" width="5" height="8" />
+      <rect x="285" y="140" width="5" height="8" />
+      <rect x="265" y="155" width="5" height="8" />
+      <rect x="275" y="155" width="5" height="8" />
+      <rect x="285" y="155" width="5" height="8" />
+    </g>
+
+    <!-- 摩天大楼5 -->
+    <rect x="305" y="130" width="45" height="150" fill="#343866" />
+    <g fill="#FFEB3B" opacity="0.8">
+      <rect x="315" y="140" width="5" height="8" />
+      <rect x="325" y="140" width="5" height="8" />
+      <rect x="335" y="140" width="5" height="8" />
+      <rect x="315" y="155" width="5" height="8" />
+      <rect x="325" y="155" width="5" height="8" />
+      <rect x="335" y="155" width="5" height="8" />
+      <rect x="315" y="170" width="5" height="8" />
+      <rect x="325" y="170" width="5" height="8" />
+      <rect x="335" y="170" width="5" height="8" />
+    </g>
+  </g>
+
+  <!-- 前景建筑 -->
+  <rect x="10" y="160" width="120" height="140" fill="#121236" />
+  <g fill="#FFEB3B" opacity="0.8">
+    <rect x="20" y="170" width="10" height="15" />
+    <rect x="40" y="170" width="10" height="15" />
+    <rect x="60" y="170" width="10" height="15" />
+    <rect x="80" y="170" width="10" height="15" />
+    <rect x="100" y="170" width="10" height="15" />
+    <rect x="20" y="195" width="10" height="15" />
+    <rect x="40" y="195" width="10" height="15" />
+    <rect x="60" y="195" width="10" height="15" />
+    <rect x="80" y="195" width="10" height="15" />
+    <rect x="100" y="195" width="10" height="15" />
+    <rect x="20" y="220" width="10" height="15" />
+    <rect x="40" y="220" width="10" height="15" />
+    <rect x="60" y="220" width="10" height="15" />
+    <rect x="80" y="220" width="10" height="15" />
+    <rect x="100" y="220" width="10" height="15" />
+    <rect x="20" y="245" width="10" height="15" />
+    <rect x="40" y="245" width="10" height="15" />
+    <rect x="60" y="245" width="10" height="15" />
+    <rect x="80" y="245" width="10" height="15" />
+    <rect x="100" y="245" width="10" height="15" />
+  </g>
+
+  <!-- 道路 -->
+  <rect x="0" y="280" width="400" height="20" fill="#202038" />
+  <g stroke="#FFEB3B" stroke-width="2" stroke-dasharray="10,10">
+    <line x1="50" y1="290" x2="350" y2="290" />
+  </g>
+
+  <!-- 汽车 -->
+  <g transform="translate(100, 290)">
+    <rect x="-15" y="-10" width="30" height="10" rx="3" fill="#f44336" />
+    <rect x="-12" y="-15" width="24" height="5" rx="2" fill="#b71c1c" />
+    <circle cx="-10" cy="0" r="3" fill="#263238" />
+    <circle cx="10" cy="0" r="3" fill="#263238" />
+  </g>
+
+  <g transform="translate(250, 290)">
+    <rect x="-15" y="-10" width="30" height="10" rx="3" fill="#03A9F4" />
+    <rect x="-12" y="-15" width="24" height="5" rx="2" fill="#01579B" />
+    <circle cx="-10" cy="0" r="3" fill="#263238" />
+    <circle cx="10" cy="0" r="3" fill="#263238" />
+  </g>
+</svg>
