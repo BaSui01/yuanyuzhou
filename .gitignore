@@ -3,7 +3,7 @@ frontend/node_modules/
 frontend/dist/
 frontend/build/
 frontend/.vite/
-
+node_modules
 # 后端依赖和缓存
 Backend/vendor/
 Backend/node_modules/
@@ -22,7 +22,7 @@ __pycache__/
 .Python
 apps/*/migrations/__pycache__/
 apps/*/migrations/*.pyc
-.venv   
+.venv
 # 日志文件
 *.log
 npm-debug.log*
