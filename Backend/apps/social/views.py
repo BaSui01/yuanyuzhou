@@ -317,24 +317,146 @@ def accept_friend_request(request, friendship_id):
             status='pending'
         )
 
-        friendship.accept()
+        # 更新好友关系状态
+        friendship.status = 'accepted'
+        friendship.updated_at = timezone.now()
+        friendship.save()
 
         # 创建通知
-        Notification.create_notification(
+        Notification.objects.create(
             recipient=friendship.from_user,
-            notification_type='friend_request',
-            title='好友请求已接受',
-            content=f'{request.user.username} 接受了您的好友请求',
-            sender=request.user
+            sender=request.user,
+            notification_type='friend_request_accepted',
+            content=f"{request.user.username} 接受了您的好友请求",
+            related_object_id=friendship.id,
+            related_object_type='friendship'
         )
 
-        logger.info(f"用户 {request.user.username} 接受了来自 {friendship.from_user.username} 的好友请求")
-        return Response({'message': '好友请求已接受'})
+        return Response({
+            'message': '已接受好友请求',
+            'friendship': FriendshipSerializer(friendship).data
+        }, status=status.HTTP_200_OK)
+    except Exception as e:
+        logger.error(f"接受好友请求出错: {str(e)}")
+        return Response({
+            'error': '处理好友请求时出错'
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@permission_classes([permissions.IsAuthenticated])
+def reject_friend_request(request, request_id):
+    """拒绝好友请求"""
+    try:
+        friendship = get_object_or_404(
+            Friendship,
+            id=request_id,
+            to_user=request.user,
+            status='pending'
+        )
+
+        # 删除好友请求
+        friendship.delete()
+
+        # 创建通知
+        Notification.objects.create(
+            recipient=friendship.from_user,
+            sender=request.user,
+            notification_type='friend_request_rejected',
+            content=f"{request.user.username} 拒绝了您的好友请求",
+            related_object_id=friendship.from_user.id,
+            related_object_type='user'
+        )
+
+        return Response({
+            'message': '已拒绝好友请求'
+        }, status=status.HTTP_200_OK)
+    except Exception as e:
+        logger.error(f"拒绝好友请求出错: {str(e)}")
+        return Response({
+            'error': '处理好友请求时出错'
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@permission_classes([permissions.IsAuthenticated])
+def remove_friend(request, user_id):
+    """删除好友"""
+    try:
+        friend = get_object_or_404(User, id=user_id)
+
+        # 查找并删除好友关系
+        friendship = Friendship.objects.filter(
+            (Q(from_user=request.user, to_user=friend) |
+             Q(from_user=friend, to_user=request.user)),
+            status='accepted'
+        ).first()
+
+        if not friendship:
+            return Response({
+                'error': '您与该用户不是好友关系'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        friendship.delete()
+
+        logger.info(f"用户 {request.user.username} 删除了好友 {friend.username}")
+        return Response({'message': '已删除好友关系'})
 
     except Exception as e:
-        logger.error(f"接受好友请求失败: {str(e)}")
+        logger.error(f"删除好友失败: {str(e)}")
         return Response(
-            {'error': '接受好友请求失败'},
+            {'error': '删除好友失败'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+
+@api_view(['GET'])
+@permission_classes([permissions.IsAuthenticated])
+def friend_suggestions(request):
+    """好友推荐"""
+    try:
+        user = request.user
+
+        # 获取当前好友ID列表
+        friend_ids = Friendship.objects.filter(
+            Q(from_user=user) | Q(to_user=user),
+            status='accepted'
+        ).values_list('from_user_id', 'to_user_id')
+
+        existing_friend_ids = set()
+        for from_id, to_id in friend_ids:
+            existing_friend_ids.add(from_id if from_id != user.id else to_id)
+
+        # 获取好友的好友（朋友的朋友）
+        friends_of_friends_ids = set()
+        for friend_id in existing_friend_ids:
+            ff_ids = Friendship.objects.filter(
+                Q(from_user_id=friend_id) | Q(to_user_id=friend_id),
+                status='accepted'
+            ).values_list('from_user_id', 'to_user_id')
+
+            for from_id, to_id in ff_ids:
+                if from_id != user.id and from_id != friend_id:
+                    friends_of_friends_ids.add(from_id)
+                if to_id != user.id and to_id != friend_id:
+                    friends_of_friends_ids.add(to_id)
+
+        # 排除已经是好友的用户
+        suggestion_ids = friends_of_friends_ids - existing_friend_ids
+
+        # 获取推荐用户信息
+        suggestions = User.objects.filter(id__in=suggestion_ids)[:10]
+
+        # 序列化结果
+        from apps.users.serializers import UserListSerializer
+        serializer = UserListSerializer(suggestions, many=True)
+
+        return Response(serializer.data)
+
+    except Exception as e:
+        logger.error(f"获取好友推荐失败: {str(e)}")
+        return Response(
+            {'error': '获取好友推荐失败'},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 
@@ -397,6 +519,58 @@ def leave_group(request, group_id):
 
 @api_view(['POST'])
 @permission_classes([permissions.IsAuthenticated])
+def invite_to_group(request, group_id):
+    """邀请用户加入群组"""
+    try:
+        group = get_object_or_404(Group, id=group_id, is_active=True)
+        user_id = request.data.get('user_id')
+
+        if not user_id:
+            return Response(
+                {'error': '请提供用户ID'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # 检查邀请人是否是群组成员
+        if not group.is_member(request.user):
+            return Response(
+                {'error': '您不是该群组的成员，无法发送邀请'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+
+        # 获取被邀请用户
+        invited_user = get_object_or_404(User, id=user_id)
+
+        # 检查用户是否已经是成员
+        if group.is_member(invited_user):
+            return Response(
+                {'error': '该用户已经是群组成员'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # 创建通知
+        Notification.objects.create(
+            recipient=invited_user,
+            sender=request.user,
+            notification_type='group_invitation',
+            content=f"{request.user.username} 邀请您加入群组 {group.name}",
+            related_object_id=group.id,
+            related_object_type='group'
+        )
+
+        logger.info(f"用户 {request.user.username} 邀请 {invited_user.username} 加入群组 {group.name}")
+        return Response({'message': '邀请已发送'})
+
+    except Exception as e:
+        logger.error(f"邀请加入群组失败: {str(e)}")
+        return Response(
+            {'error': '邀请失败'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+
+@api_view(['POST'])
+@permission_classes([permissions.IsAuthenticated])
 def like_post(request, post_id):
     """点赞动态"""
     try:
@@ -431,6 +605,98 @@ def like_post(request, post_id):
         logger.error(f"点赞动态失败: {str(e)}")
         return Response(
             {'error': '点赞失败'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+
+@api_view(['POST'])
+@permission_classes([permissions.IsAuthenticated])
+def unlike_post(request, post_id):
+    """取消点赞动态"""
+    try:
+        post = get_object_or_404(Post, id=post_id, is_active=True)
+
+        # 查找并删除点赞记录
+        like = PostLike.objects.filter(post=post, user=request.user).first()
+
+        if like:
+            like.delete()
+            post.update_like_count()
+            return Response({'message': '已取消点赞'})
+        else:
+            return Response(
+                {'error': '您未点赞此动态'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+    except Exception as e:
+        logger.error(f"取消点赞失败: {str(e)}")
+        return Response(
+            {'error': '取消点赞失败'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+
+@api_view(['POST'])
+@permission_classes([permissions.IsAuthenticated])
+def share_post(request, post_id):
+    """分享动态"""
+    try:
+        original_post = get_object_or_404(Post, id=post_id, is_active=True)
+
+        # 检查是否有权限查看原动态
+        if original_post.visibility == 'private' and original_post.author != request.user:
+            return Response(
+                {'error': '您没有权限分享此动态'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        elif original_post.visibility == 'friends':
+            if not Friendship.are_friends(request.user, original_post.author) and original_post.author != request.user:
+                return Response(
+                    {'error': '您没有权限分享此动态'},
+                    status=status.HTTP_403_FORBIDDEN
+                )
+
+        # 创建分享记录
+        content = request.data.get('content', '')
+        visibility = request.data.get('visibility', 'public')
+
+        # 创建新的动态作为分享
+        shared_post = Post.objects.create(
+            author=request.user,
+            content=content,
+            visibility=visibility
+        )
+
+        # 创建分享关联
+        PostShare.objects.create(
+            shared_post=shared_post,
+            original_post=original_post
+        )
+
+        # 更新原动态的分享计数
+        original_post.update_share_count()
+
+        # 创建通知
+        if original_post.author != request.user:
+            Notification.objects.create(
+                recipient=original_post.author,
+                sender=request.user,
+                notification_type='share',
+                content=f"{request.user.username} 分享了您的动态",
+                related_object_id=shared_post.id,
+                related_object_type='post'
+            )
+
+        return Response({
+            'message': '分享成功',
+            'post_id': shared_post.id
+        })
+
+    except Exception as e:
+        logger.error(f"分享动态失败: {str(e)}")
+        return Response(
+            {'error': '分享失败'},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 

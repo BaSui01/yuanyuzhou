@@ -6,9 +6,9 @@ app_name = 'social'
 urlpatterns = [
     # 好友关系相关
     path('friends/', views.FriendshipListView.as_view(), name='friend-list'),
-    path('friends/requests/', views.FriendRequestListView.as_view(), name='friend-request-list'),
+    path('friends/requests/', views.FriendshipListView.as_view(), name='friend-request-list'),
     path('friends/send-request/', views.send_friend_request, name='send-friend-request'),
-    path('friends/accept-request/<int:request_id>/', views.accept_friend_request, name='accept-friend-request'),
+    path('friends/accept-request/<int:friendship_id>/', views.accept_friend_request, name='accept-friend-request'),
     path('friends/reject-request/<int:request_id>/', views.reject_friend_request, name='reject-friend-request'),
     path('friends/remove/<int:user_id>/', views.remove_friend, name='remove-friend'),
     path('friends/suggestions/', views.friend_suggestions, name='friend-suggestions'),
@@ -29,30 +29,18 @@ urlpatterns = [
 
     # 评论相关
     path('posts/<int:post_id>/comments/', views.CommentListView.as_view(), name='comment-list'),
-    path('comments/<int:pk>/', views.CommentDetailView.as_view(), name='comment-detail'),
     path('comments/<int:comment_id>/like/', views.like_comment, name='like-comment'),
 
     # 消息相关
     path('messages/', views.MessageListView.as_view(), name='message-list'),
     path('messages/conversations/', views.ConversationListView.as_view(), name='conversation-list'),
-    path('messages/conversations/<int:pk>/', views.ConversationDetailView.as_view(), name='conversation-detail'),
     path('messages/send/', views.send_message, name='send-message'),
-    path('messages/<int:message_id>/read/', views.mark_message_read, name='mark-message-read'),
 
     # 通知相关
     path('notifications/', views.NotificationListView.as_view(), name='notification-list'),
-    path('notifications/<int:pk>/read/', views.mark_notification_read, name='mark-notification-read'),
-    path('notifications/mark-all-read/', views.mark_all_notifications_read, name='mark-all-notifications-read'),
 
     # 关注相关
     path('follow/<int:user_id>/', views.follow_user, name='follow-user'),
-    path('unfollow/<int:user_id>/', views.unfollow_user, name='unfollow-user'),
-    path('followers/', views.FollowerListView.as_view(), name='follower-list'),
-    path('following/', views.FollowingListView.as_view(), name='following-list'),
-
-    # 动态流
-    path('feed/', views.FeedView.as_view(), name='feed'),
-    path('feed/trending/', views.trending_posts, name='trending-posts'),
 
     # 统计相关
     path('stats/user/', views.user_social_stats, name='user-social-stats'),

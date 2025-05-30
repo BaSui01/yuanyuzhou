@@ -606,7 +606,7 @@ class Notification(BaseModel):
     recipient = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='notifications',
+        related_name='social_notifications',
         verbose_name='接收者'
     )
     sender = models.ForeignKey(
@@ -614,7 +614,7 @@ class Notification(BaseModel):
         on_delete=models.CASCADE,
         null=True,
         blank=True,
-        related_name='sent_notifications',
+        related_name='social_sent_notifications',
         verbose_name='发送者'
     )
     notification_type = models.CharField(

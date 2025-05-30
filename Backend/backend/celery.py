@@ -4,6 +4,7 @@ Celery configuration for backend project.
 import os
 from celery import Celery
 
+
 # 设置默认的Django设置模块
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
 

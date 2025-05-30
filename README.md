@@ -316,29 +316,108 @@ frontend/
 | 软件 | 版本要求 | 下载链接 |
 |------|----------|----------|
 | **Node.js** | >= 16.0.0 | [官方下载](https://nodejs.org/) |
+| **Python** | >= 3.9.0 | [官方下载](https://python.org/) |
+| **MySQL** | >= 8.0 | [官方下载](https://mysql.com/) |
+| **Redis** | >= 6.0 | [官方下载](https://redis.io/) |
 | **npm** | >= 8.0.0 | 随 Node.js 安装 |
 | **Git** | 最新版本 | [官方下载](https://git-scm.com/) |
 
 ### ⚡ 快速开始
 
-```bash
-# 1. 克隆项目
-git clone [项目地址]
-cd yuanyuzhou/frontend
+#### 方法一：使用 VS Code 一键启动 🚀
 
-# 2. 安装依赖
+1. **打开项目**
+   ```bash
+   git clone [项目地址]
+   cd yuanyuzhou
+   code .  # 在 VS Code 中打开项目
+   ```
+
+2. **启动开发环境**
+   - 按 `F5` 键，选择 `🔥 前后端同时启动`
+   - 或使用命令面板：`Ctrl+Shift+P` → `Tasks: Run Task` → `🚀 启动完整开发环境`
+
+#### 方法二：使用启动脚本
+
+```bash
+# 启动前后端
+node scripts/start-dev.js
+
+# 启动前后端 + Celery 后台任务
+node scripts/start-dev.js --celery
+```
+
+#### 方法三：手动启动
+
+**后端 Django：**
+```bash
+cd Backend
+
+# 安装依赖
+pip install -r requirements.txt
+
+# 配置环境变量 (创建 .env 文件)
+cp .env.example .env  # 编辑配置
+
+# 数据库迁移
+python manage.py makemigrations
+python manage.py migrate
+
+# 创建超级用户
+python manage.py createsuperuser
+
+# 启动开发服务器
+python manage.py runserver
+```
+
+**前端 Vue.js：**
+```bash
+cd frontend
+
+# 安装依赖
 npm install
 
-# 3. 启动开发服务器
+# 启动开发服务器
 npm run dev
-
-# 4. 浏览器访问
-# http://localhost:5173
 ```
+
+### 🎯 VS Code 调试配置
+
+项目已优化 VS Code 开发体验，提供以下启动配置：
+
+#### 🚀 前后端组合启动
+
+| 配置名称 | 描述 | 快捷键 |
+|---------|------|-------|
+| 🔥 前后端同时启动 | Django + Vue.js 同时启动 | `F5` |
+| 🔄 Django + Celery 完整后端 | 后端 + 后台任务 | `Ctrl+F5` |
+
+#### 🌐 单独启动配置
+
+**Django 后端：**
+- 🚀 Django 开发服务器 (端口 8000)
+- 🐛 Django 调试模式 (端口 8001)
+- 📊 Django 数据库迁移
+- 📝 Django 创建迁移文件
+- 👤 Django 创建超级用户
+- 🧪 Django 运行测试
+- 🔄 Celery Worker
+- ⏰ Celery Beat
+- 📚 Django Shell
+
+**Vue.js 前端：**
+- 🌐 前端开发服务器 (Vite)
+- 🔨 前端构建项目
+- 👀 前端预览构建
+- 🔧 前端代码检查
+- ✨ 前端代码格式化
 
 ### 🛠️ 常用命令
 
+**前端命令：**
 ```bash
+cd frontend
+
 # 开发模式 (热重载)
 npm run dev
 
@@ -353,10 +432,72 @@ npm run lint
 
 # 代码格式化
 npm run format
-
-# 类型检查
-npm run type-check
 ```
+
+**后端命令：**
+```bash
+cd Backend
+
+# 启动开发服务器
+python manage.py runserver
+
+# 数据库操作
+python manage.py makemigrations
+python manage.py migrate
+
+# 创建超级用户
+python manage.py createsuperuser
+
+# 运行测试
+python manage.py test
+
+# Celery 后台任务
+python manage.py celery worker --loglevel=info
+python manage.py celery beat --loglevel=info
+```
+
+### 🌐 开发环境访问地址
+
+| 服务 | 地址 | 描述 |
+|------|------|------|
+| **前端应用** | http://localhost:5173 | Vue.js 开发服务器 |
+| **后端 API** | http://127.0.0.1:8000 | Django REST API |
+| **后端调试** | http://127.0.0.1:8001 | Django 调试模式 |
+| **Django Admin** | http://127.0.0.1:8000/admin | 管理后台 |
+| **API 文档** | http://127.0.0.1:8000/api/docs/ | Swagger 文档 |
+
+### ⚙️ 环境变量配置
+
+在 `Backend/` 目录下创建 `.env` 文件：
+
+```env
+# 基本配置
+SECRET_KEY=your-secret-key-here
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
+
+# 数据库配置
+DB_NAME=backend_db
+DB_USER=root
+DB_PASSWORD=your-password
+DB_HOST=localhost
+DB_PORT=3306
+
+# Redis 配置
+REDIS_URL=redis://127.0.0.1:6379/1
+CELERY_BROKER_URL=redis://127.0.0.1:6379/0
+
+# CORS 配置
+CORS_ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:3000
+CSRF_TRUSTED_ORIGINS=http://localhost:5173,http://127.0.0.1:3000
+```
+
+### 📚 开发文档
+
+详细的开发环境配置请参阅：
+- 📖 [开发环境详细配置指南](./docs/development-setup.md)
+- 🔧 [VS Code 调试配置说明](./docs/development-setup.md#快速启动)
+- 🚀 [项目启动脚本使用](./docs/development-setup.md#常用开发命令)
 
 ---
 

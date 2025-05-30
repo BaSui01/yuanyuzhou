@@ -1,594 +1,1046 @@
-// 认证页面样式文件
+// 公用认证页面样式 - 现代互联网美化版
+:root {
+  // 扩展色彩系统
+  --primary-500: #6366f1;
+  --primary-600: #4f46e5;
+  --primary-700: #4338ca;
+  --primary-800: #3730a3;
+  --primary-50: #eef2ff;
+  --primary-100: #e0e7ff;
 
-// 导入Sass模块
-@use "sass:map";
-@use "sass:string";
-@use "sass:math";
-@use "sass:color";
+  // 灰度系统
+  --gray-25: #fcfcfd;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
 
-// 变量定义
-$primary-color: #2575fc;
-$primary-hover: #1c5cca;
-$primary-light: rgba(37, 117, 252, 0.1);
-$gradient-start: #6a11cb;
-$gradient-end: #2575fc;
-$text-dark: #1f2937;
-$text-medium: #374151;
-$text-light: #6b7280;
-$error-color: #ef4444;
-$success-color: #10b981;
-$warning-color: #f59e0b;
-$border-color: #d1d5db;
-$bg-light: #f9fafb;
-$white: #ffffff;
-$box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-$hover-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-$border-radius: 12px;
-$input-radius: 8px;
-$transition-speed: 0.3s;
+  // 语义化颜色
+  --red-500: #ef4444;
+  --red-600: #dc2626;
+  --red-700: #b91c1c;
+  --green-500: #10b981;
+  --green-600: #16a34a;
+  --green-700: #15803d;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --amber-500: #f59e0b;
 
-// 认证布局
-.auth-layout {
-    min-height: 100vh;
-    background: linear-gradient(135deg, $gradient-start 0%, $gradient-end 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
+  // 阴影系统
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-glow: 0 0 0 1px rgba(99, 102, 241, 0.05), 0 1px 3px 0 rgba(99, 102, 241, 0.1), 0 4px 6px 0 rgba(99, 102, 241, 0.05);
 
-    .auth-container {
-        background: rgba($white, 0.95);
-        backdrop-filter: blur(10px);
-        border-radius: $border-radius;
-        box-shadow: $box-shadow;
-        padding: 2.5rem;
-        width: 100%;
-        max-width: 450px;
-        border: 1px solid rgba($white, 0.18);
-        animation: fadeInUp 0.6s ease-out;
-        transition: transform $transition-speed ease, box-shadow $transition-speed ease;
-
-        &:hover {
-            transform: translateY(-5px);
-            box-shadow: $hover-shadow;
-        }
-
-        .auth-logo {
-            text-align: center;
-            margin-bottom: 2rem;
-
-            img {
-                height: 60px;
-                width: auto;
-            }
-        }
-
-        .auth-content {
-            margin-bottom: 2rem;
-        }
-
-        .auth-footer {
-            text-align: center;
-            margin-top: 2rem;
-            font-size: 0.875rem;
-            color: $text-light;
-        }
-    }
-
-    @media (max-width: 576px) {
-        padding: 1rem;
-
-        .auth-container {
-            padding: 2rem;
-            max-width: 100%;
-        }
-    }
+  // 动画曲线
+  --ease-in-out-cubic: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-// 认证表单通用样式
+// 全局强力样式修复
+:deep(.p-password-input),
+:deep(.p-inputtext.p-password-input),
+:deep(.p-inputtext.p-component.p-password-input),
+:deep(input.p-inputtext.p-component.p-password-input),
+:deep(.password-input-field),
+:deep(input.password-input-field) {
+  color: var(--gray-900) !important;
+
+  &::placeholder {
+    color: var(--gray-400) !important;
+  }
+
+  &:focus {
+    color: var(--gray-900) !important;
+  }
+}
+
+// 通配符强力修复
+* {
+  &.p-password-input,
+  &.password-input-field {
+    color: var(--gray-900) !important;
+  }
+}
+
+// 全局密码输入框样式统一
+:deep(.p-password),
+:deep(.password-field-direct .p-password),
+:deep(.password-field .p-password) {
+  width: 100% !important;
+  position: relative !important;
+
+  // 添加左侧锁定图标
+  &::before {
+    content: '\e926' !important; // pi-lock 图标
+    font-family: 'primeicons' !important;
+    position: absolute !important;
+    left: 1rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    color: var(--gray-400) !important;
+    font-size: 1.125rem !important;
+    z-index: 3 !important;
+    pointer-events: none !important;
+    transition: color 0.2s ease !important;
+  }
+
+  &:focus-within::before {
+    color: var(--primary-500) !important;
+  }
+
+  .p-password-input {
+    width: 100% !important;
+    padding: 0.875rem 3rem 0.875rem 3rem !important;
+    border: 2px solid var(--gray-200) !important;
+    border-radius: 0.875rem !important;
+    font-size: 1rem !important;
+    background: var(--gray-25) !important;
+    transition: all 0.3s var(--ease-out-quart) !important;
+    color: var(--gray-900) !important;
+    box-shadow: var(--shadow-xs) !important;
+
+    &::placeholder {
+      color: var(--gray-400) !important;
+    }
+
+    &:focus {
+      border-color: var(--primary-500) !important;
+      background: white !important;
+      box-shadow: var(--shadow-glow) !important;
+      outline: none !important;
+      color: var(--gray-900) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    &:hover:not(:focus) {
+      border-color: var(--gray-300) !important;
+      background: white !important;
+      box-shadow: var(--shadow-sm) !important;
+      transform: translateY(-0.5px) !important;
+    }
+
+    &:disabled {
+      opacity: 0.6 !important;
+      cursor: not-allowed !important;
+    }
+  }
+
+  .p-password-toggle-icon {
+    color: var(--gray-400) !important;
+    right: 1rem !important;
+    z-index: 2 !important;
+    transition: all 0.2s ease !important;
+    padding: 0.25rem !important;
+    border-radius: 0.375rem !important;
+
+    &:hover {
+      color: var(--primary-500) !important;
+      background: var(--primary-50) !important;
+    }
+  }
+}
+
+// 通配符密码输入框修复
+* {
+  &.p-password {
+    width: 100% !important;
+    position: relative !important;
+
+    &::before {
+      content: '\e926' !important;
+      font-family: 'primeicons' !important;
+      position: absolute !important;
+      left: 1rem !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      color: var(--gray-400) !important;
+      font-size: 1.125rem !important;
+      z-index: 3 !important;
+      pointer-events: none !important;
+    }
+  }
+
+  &.p-password-input {
+    padding: 0.875rem 3rem 0.875rem 3rem !important;
+    border: 2px solid var(--gray-200) !important;
+    border-radius: 0.875rem !important;
+    background: var(--gray-25) !important;
+    color: var(--gray-900) !important;
+  }
+
+  &.p-password-toggle-icon {
+    color: var(--gray-400) !important;
+    right: 1rem !important;
+  }
+}
+
+// 全局复选框样式修复 - 现代化设计
+:deep(.p-checkbox) {
+  // 移除可能阻挡点击的元素
+  &::before,
+  &::after {
+    display: none !important;
+  }
+
+  .p-checkbox-box {
+    background: white !important;
+    border: 2px solid var(--gray-300) !important;
+    border-radius: 0.5rem !important;
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+    transition: all 0.3s var(--ease-out-quart) !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 1 !important;
+    box-shadow: var(--shadow-xs) !important;
+
+    &:hover {
+      border-color: var(--primary-500) !important;
+      background: var(--primary-50) !important;
+      box-shadow: var(--shadow-sm) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    &.p-highlight {
+      background: linear-gradient(135deg, var(--primary-500), var(--primary-600)) !important;
+      border-color: var(--primary-500) !important;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
+
+      .p-checkbox-icon {
+        color: white !important;
+        font-size: 0.8125rem !important;
+        font-weight: 700 !important;
+        pointer-events: none !important;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+      }
+
+      &:hover {
+        background: linear-gradient(135deg, var(--primary-600), var(--primary-700)) !important;
+        border-color: var(--primary-600) !important;
+        box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4) !important;
+        transform: translateY(-2px) !important;
+      }
+    }
+
+    &:focus-visible,
+    &:focus {
+      outline: none !important;
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12) !important;
+    }
+  }
+
+  .p-checkbox-icon {
+    color: white !important;
+    font-size: 0.8125rem !important;
+    transition: all 0.2s ease !important;
+    pointer-events: none !important;
+  }
+
+  // 确保复选框可以被点击
+  input[type="checkbox"] {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    z-index: 2 !important;
+  }
+
+  &:not(.p-disabled):hover .p-checkbox-box {
+    border-color: var(--primary-500) !important;
+  }
+
+  &.p-disabled .p-checkbox-box {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+  }
+}
+
+// 通配符复选框修复
+* {
+  &.p-checkbox-box {
+    background: white !important;
+    border: 2px solid var(--gray-300) !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+
+    &.p-highlight {
+      background: linear-gradient(135deg, var(--primary-500), var(--primary-600)) !important;
+      border-color: var(--primary-500) !important;
+
+      .p-checkbox-icon {
+        color: white !important;
+      }
+    }
+  }
+
+  &.p-checkbox-icon {
+    color: white !important;
+    pointer-events: none !important;
+  }
+}
+
+// 公用认证容器样式 - 现代玻璃态设计
+.auth-container,
 .login-container,
 .register-container,
 .forgot-password-container,
 .reset-password-container {
-
-    .login-card,
-    .register-card,
-    .forgot-password-card,
-    .reset-password-card {
-        background-color: $white;
-        border-radius: $border-radius;
-        padding: 2rem;
-        transition: transform $transition-speed ease;
-
-        &:hover {
-            transform: translateY(-5px);
-        }
-    }
-
-    .logo-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 1.5rem;
-
-        .logo {
-            width: 40px;
-            height: 40px;
-            margin-right: 0.75rem;
-        }
-
-        .app-name {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: $primary-color;
-            margin: 0;
-        }
-    }
-
-    h2,
-    .login-title,
-    .register-title,
-    .forgot-password-title,
-    .reset-password-title {
-        font-size: 1.5rem;
-        font-weight: 700;
-        text-align: center;
-        margin-bottom: 0.5rem;
-        color: $text-dark;
-    }
-
-    .description {
-        text-align: center;
-        color: $text-light;
-        margin-bottom: 1.5rem;
-        font-size: 0.875rem;
-        line-height: 1.5;
-    }
-
-    .login-form,
-    .register-form,
-    .forgot-password-form,
-    .reset-password-form {
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-    }
-
-    .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 0.375rem;
-
-        label {
-            display: block;
-            margin-bottom: 0.25rem;
-            font-weight: 500;
-            color: $text-medium;
-            font-size: 0.875rem;
-        }
-    }
-
-    .input-wrapper {
-        position: relative;
-        display: flex;
-        align-items: center;
-
-        i {
-            position: absolute;
-            left: 0.75rem;
-            color: $text-light;
-            font-size: 1rem;
-            z-index: 1;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 0.75rem 0.75rem 0.75rem 2.5rem;
-            border: 1px solid $border-color;
-            border-radius: $input-radius;
-            font-size: 0.9375rem;
-            background-color: $bg-light;
-            transition: all $transition-speed ease;
-
-            &:focus {
-                border-color: $primary-color;
-                box-shadow: 0 0 0 3px $primary-light;
-                outline: none;
-                background-color: $white;
-            }
-
-            &::placeholder {
-                color: #9ca3af;
-            }
-        }
-    }
-
-    .password-input {
-        :deep(.p-password-input) {
-            width: 100%;
-            padding: 0.75rem 0.75rem 0.75rem 2.5rem;
-            border: 1px solid $border-color;
-            border-radius: $input-radius;
-            font-size: 0.9375rem;
-            background-color: $bg-light;
-
-            &:focus {
-                border-color: $primary-color;
-                box-shadow: 0 0 0 3px $primary-light;
-                outline: none;
-                background-color: $white;
-            }
-        }
-
-        :deep(.p-password-panel) {
-            margin-top: 0.3125rem;
-        }
-    }
-
-    .captcha-group {
-        .captcha-wrapper {
-            display: flex;
-            gap: 0.625rem;
-        }
-
-        .captcha-input-wrapper {
-            flex: 1;
-        }
-
-        .captcha-image {
-            height: 2.75rem;
-            border-radius: $input-radius;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-
-            &:hover {
-                transform: scale(1.02);
-            }
-        }
-    }
-
-    .form-options {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 0.3125rem 0 0.625rem;
-        font-size: 0.875rem;
-
-        .remember-me {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-
-            label {
-                margin: 0;
-                color: $text-light;
-                cursor: pointer;
-            }
-        }
-
-        .forgot-link {
-            color: $primary-color;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-
-            &:hover {
-                color: $primary-hover;
-                text-decoration: underline;
-            }
-        }
-
-        .terms {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-
-            label {
-                margin: 0;
-                color: $text-light;
-                line-height: 1.5;
-                font-size: 0.875rem;
-
-                a {
-                    color: $primary-color;
-                    text-decoration: none;
-                    font-weight: 500;
-
-                    &:hover {
-                        color: $primary-hover;
-                        text-decoration: underline;
-                    }
-                }
-            }
-        }
-    }
-
-    .error-text {
-        color: $error-color;
-        font-size: 0.75rem;
-        margin-top: 0.125rem;
-    }
-
-    .submit-button {
-        width: 100%;
-        padding: 0.75rem;
-        margin-top: 0.625rem;
-        background: linear-gradient(135deg, $primary-color, $primary-hover);
-        border: none;
-        border-radius: $input-radius;
-        color: $white;
-        font-size: 1rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all $transition-speed ease;
-
-        &:hover:not(:disabled) {
-            background: linear-gradient(135deg, color.scale($primary-color, $lightness: -5%), color.scale($primary-hover, $lightness: -5%));
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba($primary-color, 0.4);
-        }
-
-        &:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba($primary-color, 0.3);
-        }
-
-        &:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-    }
-
-    .form-footer {
-        text-align: center;
-        margin-top: 1.5625rem;
-        font-size: 0.875rem;
-        color: $text-light;
-
-        a {
-            color: $primary-color;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-
-            &:hover {
-                color: $primary-hover;
-                text-decoration: underline;
-            }
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-
-            i {
-                margin-right: 0.3125rem;
-                font-size: 0.75rem;
-            }
-        }
-    }
-
-    // 错误和成功消息
-    .error-message {
-        background: #fef2f2;
-        border: 1px solid #fca5a5;
-        color: $error-color;
-        padding: 0.75rem 1rem;
-        border-radius: $input-radius;
-        margin-bottom: 1rem;
-        font-size: 0.875rem;
-        display: flex;
-        align-items: center;
-
-        .pi {
-            margin-right: 0.5rem;
-        }
-    }
-
-    .success-message {
-        background: #f0fdf4;
-        border: 1px solid #86efac;
-        color: $success-color;
-        padding: 0.75rem 1rem;
-        border-radius: $input-radius;
-        margin-bottom: 1rem;
-        font-size: 0.875rem;
-        display: flex;
-        align-items: center;
-
-        .pi {
-            margin-right: 0.5rem;
-        }
-    }
-}
-
-// 密码强度指示器
-.password-strength {
-    margin-top: 0.5rem;
-
-    .strength-bar {
-        width: 100%;
-        height: 4px;
-        background-color: #e5e7eb;
-        border-radius: 2px;
-        overflow: hidden;
-        margin-bottom: 0.5rem;
-
-        .strength-fill {
-            height: 100%;
-            transition: all 0.3s ease;
-            border-radius: 2px;
-
-            &.weak {
-                width: 25%;
-                background: $error-color;
-            }
-
-            &.fair {
-                width: 50%;
-                background: $warning-color;
-            }
-
-            &.good {
-                width: 75%;
-                background: $primary-color;
-            }
-
-            &.strong {
-                width: 100%;
-                background: $success-color;
-            }
-        }
-    }
-
-    .strength-text {
-        font-size: 0.75rem;
-        color: $text-light;
-    }
-}
-
-// 社交登录按钮
-.social-buttons {
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid #e5e7eb;
-
-    .social-title {
-        text-align: center;
-        margin-bottom: 1rem;
-        color: $text-light;
-        font-size: 0.875rem;
-        position: relative;
-
-        &::before,
-        &::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 45%;
-            height: 1px;
-            background: #e5e7eb;
-        }
-
-        &::before {
-            left: 0;
-        }
-
-        &::after {
-            right: 0;
-        }
-    }
-
-    .social-button-group {
-        display: flex;
-        gap: 0.75rem;
-
-        .social-button {
-            flex: 1;
-            padding: 0.75rem;
-            border: 1px solid #e5e7eb;
-            background: $white;
-            border-radius: $input-radius;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: $text-medium;
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-
-            &:hover {
-                border-color: $border-color;
-                background: $bg-light;
-                transform: translateY(-1px);
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            }
-
-            &.github:hover {
-                border-color: #1f2937;
-                color: #1f2937;
-            }
-
-            &.google:hover {
-                border-color: #dc2626;
-                color: #dc2626;
-            }
-
-            &.wechat:hover {
-                border-color: #16a34a;
-                color: #16a34a;
-            }
-
-            .social-icon {
-                width: 18px;
-                height: 18px;
-            }
-        }
-    }
-}
-
-// 响应式设计
-@media (max-width: 640px) {
-
-    .login-container,
-    .register-container,
-    .forgot-password-container,
-    .reset-password-container {
-        .form-options {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .social-button-group {
-            flex-direction: column;
-
-            .social-button {
-                width: 100%;
-            }
-        }
-    }
-
-    .captcha-container {
-        flex-direction: column;
-
-        .captcha-image {
-            width: 100%;
-            height: 50px;
-        }
-    }
-}
-
-// 动画效果
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-// 加载状态
-.form-loading {
-    position: relative;
+  max-width: 30rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(24px) saturate(180%);
+  border-radius: 2rem;
+  box-shadow:
+    var(--shadow-2xl),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: slideInUp 0.8s var(--ease-out-expo);
+  position: relative;
+  overflow: hidden;
+
+  // 添加微妙的渐变覆盖
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  }
+
+  // 添加左上角的光晕效果
+  &::after {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 6rem;
+    height: 6rem;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
     pointer-events: none;
+  }
+
+  @media (max-width: 640px) {
+    margin: 1rem;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    max-width: none;
+  }
+}
+
+// 页头样式 - 现代化升级
+.auth-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 1;
+
+  .logo {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: 0 auto 1.5rem auto;
+    display: block;
+    filter: drop-shadow(0 8px 16px rgba(99, 102, 241, 0.3));
+    transition: transform 0.3s var(--ease-out-quart);
+
+    &:hover {
+      transform: scale(1.05) rotate(1deg);
+    }
+  }
+
+  .app-name {
+    font-size: 1.75rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-600), var(--primary-800), var(--blue-600));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    letter-spacing: -0.025em;
+    animation: gradientShift 6s ease-in-out infinite;
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+}
+
+// 内容区域 - 现代排版
+.auth-content {
+  position: relative;
+  z-index: 1;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    text-align: center;
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+
+  .description {
+    color: var(--gray-600);
+    text-align: center;
+    margin: 0 0 2.5rem 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+}
+
+// 表单样式 - 现代间距
+.auth-form {
+  .form-field {
+    margin-bottom: 1.75rem;
+    border: none;
+    padding: 0;
+
+    label {
+      display: block;
+      font-weight: 600;
+      color: var(--gray-700);
+      margin-bottom: 0.625rem;
+      font-size: 0.9375rem;
+      letter-spacing: 0.01em;
+    }
+
+    &:last-of-type {
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  &.form-loading {
+    opacity: 0.7;
+    pointer-events: none;
+    filter: blur(0.5px);
+  }
+}
+
+// 输入组样式 - 现代化图标
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  i {
+    position: absolute;
+    left: 1rem;
+    color: var(--gray-400);
+    font-size: 1.125rem;
+    z-index: 2;
+    pointer-events: none;
+    transition: all 0.3s var(--ease-out-quart);
+  }
+
+  &:focus-within i {
+    color: var(--primary-500);
+    transform: scale(1.1);
+  }
+}
+
+// 输入框样式 - 现代玻璃态设计
+.form-input {
+  width: 100%;
+  padding: 0.9375rem 1rem 0.9375rem 3rem;
+  border: 2px solid var(--gray-200);
+  border-radius: 0.875rem;
+  font-size: 1rem;
+  background: var(--gray-25);
+  transition: all 0.3s var(--ease-out-quart);
+  color: var(--gray-900);
+  box-shadow: var(--shadow-xs);
+  font-weight: 400;
+
+  &::placeholder {
+    color: var(--gray-400);
+    font-weight: 400;
+  }
+
+  &:focus {
+    border-color: var(--primary-500);
+    background: white;
+    box-shadow: var(--shadow-glow);
+    outline: none;
+    color: var(--gray-900);
+    transform: translateY(-1px);
+  }
+
+  &:hover:not(:focus) {
+    border-color: var(--gray-300);
+    background: white;
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-0.5px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// 验证码相关样式 - 现代化设计
+.captcha-field {
+  .captcha-group {
+    display: flex;
+    gap: 0.875rem;
+    align-items: stretch;
+
+    .captcha-input {
+      flex: 1;
+    }
+
+    .captcha-image {
+      height: 3.5rem;
+      min-width: 128px;
+      border: 2px solid var(--gray-200);
+      border-radius: 0.875rem;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out-quart);
+      object-fit: cover;
+      box-shadow: var(--shadow-xs);
+
+      &:hover {
+        border-color: var(--primary-500);
+        transform: translateY(-1px) scale(1.02);
+        box-shadow: var(--shadow-md);
+      }
+
+      &:active {
+        transform: translateY(0) scale(1.01);
+      }
+    }
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+      gap: 1.25rem;
+
+      .captcha-image {
+        width: 100%;
+        height: 3.25rem;
+      }
+    }
+  }
+}
+
+// 表单选项样式 - 现代化布局
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.75rem;
+
+  .remember-option {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+
+    label {
+      margin: 0;
+      color: var(--gray-600);
+      font-size: 0.9375rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--gray-700);
+      }
+    }
+  }
+
+  .forgot-link {
+    color: var(--primary-600);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+
+    &:hover {
+      color: var(--primary-700);
+      background: var(--primary-50);
+    }
+  }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+}
+
+// 优化的提交按钮样式 - 现代豪华设计
+.submit-btn {
+  :deep(.p-button) {
+    width: 100% !important;
+    padding: 1.125rem 1.75rem !important;
+    background: linear-gradient(135deg, var(--primary-600), var(--primary-700), var(--primary-800)) !important;
+    background-size: 200% 200% !important;
+    border: none !important;
+    border-radius: 1rem !important;
+    font-weight: 700 !important;
+    font-size: 1.0625rem !important;
+    color: white !important;
+    transition: all 0.4s var(--ease-out-expo) !important;
+    box-shadow:
+      0 8px 24px rgba(99, 102, 241, 0.4),
+      0 4px 12px rgba(99, 102, 241, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    cursor: pointer !important;
+    letter-spacing: 0.025em !important;
+    text-transform: none !important;
+    position: relative !important;
+    overflow: hidden !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+
+    // 添加动态光泽效果
+    &::before {
+      content: '' !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: -100% !important;
+      width: 100% !important;
+      height: 100% !important;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent) !important;
+      transition: left 0.6s ease !important;
+    }
+
+    // 添加脉冲效果
+    &::after {
+      content: '' !important;
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      width: 0 !important;
+      height: 0 !important;
+      background: rgba(255, 255, 255, 0.3) !important;
+      border-radius: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      transition: width 0.6s ease, height 0.6s ease !important;
+    }
+
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, var(--primary-700), var(--primary-800), #312e81) !important;
+      background-position: 100% 100% !important;
+      transform: translateY(-3px) scale(1.02) !important;
+      box-shadow:
+        0 12px 32px rgba(99, 102, 241, 0.5),
+        0 8px 20px rgba(99, 102, 241, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+
+      &::before {
+        left: 100% !important;
+      }
+
+      &::after {
+        width: 300px !important;
+        height: 300px !important;
+        opacity: 0 !important;
+      }
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(-1px) scale(1.01) !important;
+      box-shadow:
+        0 6px 20px rgba(99, 102, 241, 0.4),
+        0 4px 12px rgba(99, 102, 241, 0.3) !important;
+    }
+
+    &:disabled {
+      opacity: 0.6 !important;
+      cursor: not-allowed !important;
+      transform: none !important;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.2) !important;
+
+      &::before,
+      &::after {
+        display: none !important;
+      }
+    }
+
+    .p-button-icon {
+      font-size: 1.3125rem !important;
+      margin-left: 0.625rem !important;
+      transition: transform 0.3s var(--ease-out-quart) !important;
+    }
+
+    .p-button-label {
+      font-weight: 700 !important;
+      letter-spacing: 0.025em !important;
+    }
+
+    &:hover:not(:disabled) .p-button-icon {
+      transform: translateX(3px) !important;
+    }
+  }
+}
+
+// 全局按钮优化 - 现代系统
+:deep(.p-button) {
+  &.p-button-secondary {
+    background: var(--gray-100) !important;
+    border: 2px solid var(--gray-200) !important;
+    color: var(--gray-700) !important;
+    font-weight: 600 !important;
+    border-radius: 0.875rem !important;
+    transition: all 0.3s var(--ease-out-quart) !important;
+    box-shadow: var(--shadow-xs) !important;
+
+    &:hover:not(:disabled) {
+      background: var(--gray-200) !important;
+      border-color: var(--gray-300) !important;
+      color: var(--gray-800) !important;
+      transform: translateY(-1px) !important;
+      box-shadow: var(--shadow-sm) !important;
+    }
+  }
+
+  &.p-button-text {
+    color: var(--primary-600) !important;
+    font-weight: 600 !important;
+    border-radius: 0.625rem !important;
+    transition: all 0.2s ease !important;
+    padding: 0.5rem 0.75rem !important;
+
+    &:hover:not(:disabled) {
+      background: var(--primary-50) !important;
+      color: var(--primary-700) !important;
+      transform: translateY(-1px) !important;
+    }
+  }
+}
+
+// 社交登录样式 - 现代化设计
+.social-login {
+  margin: 2.5rem 0;
+
+  .social-title {
+    text-align: center;
+    color: var(--gray-500);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    margin: 0 0 1.25rem 0;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: calc(50% - 3.5rem);
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gray-300), transparent);
+    }
+
+    &::before {
+      left: 0;
+    }
 
     &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(255, 255, 255, 0.7);
-        border-radius: $input-radius;
-        z-index: 1;
+      right: 0;
     }
+  }
+
+  .social-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.875rem;
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.625rem;
+      padding: 1rem 1.25rem;
+      border: 2px solid var(--gray-200);
+      border-radius: 0.875rem;
+      background: white;
+      color: var(--gray-700);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out-quart);
+      box-shadow: var(--shadow-xs);
+
+      &:hover {
+        border-color: var(--gray-300);
+        background: var(--gray-50);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      &:active {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-sm);
+      }
+
+      i {
+        font-size: 1.25rem;
+      }
+
+      &.github:hover {
+        border-color: #333;
+        color: #333;
+        background: #f8f9fa;
+      }
+
+      &.google:hover {
+        border-color: #4285f4;
+        color: #4285f4;
+        background: #f8fbff;
+      }
+    }
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+}
+
+// 页脚样式 - 现代化设计
+.auth-footer {
+  text-align: center;
+  color: var(--gray-600);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+
+  a {
+    color: var(--primary-600);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+
+    &:hover {
+      color: var(--primary-700);
+      background: var(--primary-50);
+    }
+  }
+}
+
+// 错误消息样式 - 现代化设计
+.error-message {
+  color: var(--red-600);
+  font-size: 0.8125rem;
+  margin-top: 0.375rem;
+  display: block;
+  font-weight: 500;
+  background: var(--red-50);
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
+  border-left: 3px solid var(--red-500);
+}
+
+// 成功消息样式 - 现代化设计
+.success-message {
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border: 2px solid #86efac;
+  color: var(--green-700);
+  padding: 1.75rem;
+  border-radius: 1rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  animation: slideInUp 0.6s var(--ease-out-expo);
+  box-shadow: var(--shadow-lg);
+
+  .pi {
+    font-size: 1.75rem;
+    margin-top: 0.125rem;
+    color: var(--green-600);
+    background: white;
+    border-radius: 50%;
+    padding: 0.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  div {
+    flex: 1;
+
+    strong {
+      display: block;
+      font-size: 1.125rem;
+      margin-bottom: 0.625rem;
+      color: var(--green-700);
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: #166534;
+      font-weight: 400;
+    }
+  }
+}
+
+// 动画系统 - 现代化动画
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(2rem) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0%, 20%, 40%, 60%, 80%, 100% {
+    transition-timing-function: var(--ease-out-quart);
+  }
+  0% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+// 响应式调整 - 现代化适配
+@media (max-width: 640px) {
+  .auth-container,
+  .login-container,
+  .register-container,
+  .forgot-password-container,
+  .reset-password-container {
+    .auth-header {
+      margin-bottom: 2rem;
+
+      .app-name {
+        font-size: 1.5rem;
+      }
+
+      .logo {
+        width: 3rem;
+        height: 3rem;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .auth-content h2 {
+      font-size: 1.75rem;
+    }
+
+    .form-field {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  // 移动端按钮优化
+  .submit-btn {
+    :deep(.p-button) {
+      padding: 1.25rem 1.75rem !important;
+      font-size: 1.125rem !important;
+      border-radius: 0.875rem !important;
+    }
+  }
+
+  .social-login {
+    margin: 2rem 0;
+
+    .social-title {
+      margin-bottom: 1rem;
+    }
+
+    .social-buttons .social-btn {
+      padding: 0.875rem 1rem;
+    }
+  }
+}
+
+// 特殊效果 - 微交互
+.auth-form {
+  .form-field {
+    &:hover {
+      .input-group i {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+// 加载状态美化
+.form-loading {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 2s infinite;
+    pointer-events: none;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+// 暗色主题适配准备
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gray-25: #1a1a1a;
+    --gray-50: #262626;
+    --gray-100: #404040;
+  }
 }

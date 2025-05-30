@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+    #!/usr/bin/env python3
 """
 安全密钥生成器
 为元宇宙社交平台生成加密密钥
@@ -32,7 +32,7 @@ def main():
     print("=" * 50)
     print(f"生成时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print()
-    
+
     # 生成各种密钥
     keys = {
         'CRYPTO_KEY': generate_key(64),
@@ -45,16 +45,16 @@ def main():
         'API_KEY': generate_hex_key(16),
         'WEBHOOK_SECRET': generate_key(32),
     }
-    
+
     print("🎯 生成的密钥:")
     print("-" * 30)
     for key, value in keys.items():
         print(f"{key}={value}")
-    
+
     print()
     print("🔧 完整的.env配置:")
     print("-" * 30)
-    
+
     env_content = f"""# Django后端加密解密服务环境变量配置
 # 生成时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 # 警告: 请妥善保管这些密钥，不要泄露给他人
@@ -230,14 +230,14 @@ EMAIL_HOST_PASSWORD=
 # 5. 监控异常的加密操作
 # 6. 备份重要的密钥
 """
-    
+
     print(env_content)
-    
+
     # 保存到文件
     output_file = ".env.generated"
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(env_content)
-    
+
     print(f"✅ 配置文件已保存到: {output_file}")
     print()
     print("🚨 重要提醒:")
